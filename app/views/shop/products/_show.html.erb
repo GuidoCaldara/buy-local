@@ -1,0 +1,20 @@
+<% if product.photo.attached? %>
+  <%= cl_image_tag product.photo.key, width:300, height:300, crop: :fill %>
+<% else %>
+  <%= image_tag 'no-picture-product' %>
+<% end %>
+
+<h1>Nome: <%= product.name %></h1>
+<p>Descrizione: <%= product.description %></p>
+<p>Prezzo: <%= product.price %>€</p>
+<% if product.discounted_price_cents != 0 %>
+  <p>Prodotto attualmente scontato a: <%= product.discounted_price %>€</p>
+<% end %>
+<p>
+  Venduto a: <%= product.sold_by %>
+  <% if product.sold_by == "Confezione" %>
+  <br>Peso confezione: <%=product.pack_weight  %>g
+  <% end %>
+</p>
+<p><%= product.available ? 'Non Disponibile' :'Disponibile' %></p>
+

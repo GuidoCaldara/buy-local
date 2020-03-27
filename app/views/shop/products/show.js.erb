@@ -1,0 +1,20 @@
+function closeModal(){
+  const background = document.querySelector(".store-dashboard-modal-background")
+  var modal = document.querySelector('.store-dashboard-modal-background')
+  background.addEventListener("click", (e) => {
+      if (e.target === background){
+        modal.remove()
+      }
+  })
+  var btn = document.querySelector('.close-store-dashboard-modal')
+  btn.addEventListener('click', () => {
+    modal.remove()
+  })
+}
+
+var body = document.querySelector('body')
+body.insertAdjacentHTML('afterbegin', "<%= j render 'shop/products/shop-dashboard-modal' %>")
+var modalBody = document.querySelector('.store-dashboard-modal-body')
+modalBody.innerHTML = '<%= j render "shop/products/show", product: @product %>'
+
+closeModal()

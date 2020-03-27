@@ -1,0 +1,25 @@
+#shop-product-filter-form{
+  padding: 0px 8px
+}
+.filter-category-dropdown{
+  cursor: pointer;
+}
+.filter-catregory-checkboxes-container{
+  position: absolute;
+  background: white;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #b3b3b3;
+  padding: 10px;
+  &.hidden{
+    display: none
+  }
+}
+
+
+.add-new-product-link-container{
+  flex: 1;
+  display:flex;
+  justify-content: flex-end;
+}

@@ -15,6 +15,11 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'money-rails', '~>1.12'
+gem 'cloudinary', '~> 1.12.0'
+gem 'pg_search'
+gem 'stripe'
+gem 'httparty'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

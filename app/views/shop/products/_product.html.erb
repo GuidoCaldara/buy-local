@@ -1,0 +1,46 @@
+<div data-product-id="<%= product.id %>" class="shop-product-card">
+  <div class="shop-product-card-image">
+    <% if product.photo.attached? %>
+    <%= cl_image_tag product.photo.key, width:20, height:20, crop: :fill %>
+    <% else %>
+    <%= image_tag 'no-picture-product' %>
+    <% end %>
+  </div>
+  <div class="shop-product-card-category">
+    <%= product.category.name %>
+  </div>
+  <div class="shop-product-card-name">
+    <%= product.name.truncate(30) %>
+  </div>
+  <div class="shop-product-card-price">
+    <% if product.discounted_price_cents != 0 %>
+      <del><%= product.price %>€</del>
+    <% else %>
+      <%= product.price %>€
+    <% end %>
+  </div>
+  <div class="shop-product-card-discount">
+    <% if product.discounted_price_cents != 0 %>
+      <%= product.discounted_price %>€
+    <% else %>
+      ---
+    <% end %>
+  </div>
+  <div class="shop-product-card-sold-by">
+    <%= product.sold_by %>
+  </div>
+  <div class="shop-product-card-available">
+    <i class="fas fa-circle product-availbility <%= product.available ? 'green' : 'red' %>"></i>
+  </div>
+  <div class="shop-product-card-links">
+    <%= link_to edit_shop_product_path(product), remote: true do %>
+    <i class="far fa-edit"></i>
+    <% end %>
+    <%= link_to shop_product_path(product), method: :delete, data:{confirm: "Sei sicuro di voler rimuovere #{product.name}?"}, remote: true do %>
+    <i class="fas fa-trash-alt"></i>
+    <% end %>
+    <%= link_to shop_product_path(product), remote: true do %>
+    <i class="fas fa-external-link-alt"></i>
+    <% end %>
+  </div>
+</div>

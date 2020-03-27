@@ -1,0 +1,10 @@
+<div class="products-container">
+  <%= render 'shop/products/search_product_form', categories: categories %>
+  <%= render 'shop/products/products_list_header', categories: categories %>
+  <div class="product-list-container">
+    <% products.each do |product| %>
+      <%= render 'shop/products/product', product: product %>
+    <% end %>
+  </div>
+</div>
+

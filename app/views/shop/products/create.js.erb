@@ -1,0 +1,21 @@
+
+function appendProduct(productCard){
+  const container = document.querySelector('.product-list-container')
+  container.insertAdjacentHTML('afterbegin', productCard)
+}
+
+function dislpayErrors(form){
+  const formContainer = document.querySelector('.store-dashboard-modal-body')
+  formContainer.innerHTML = form
+}
+
+function closeModal(){
+  document.querySelector('.store-dashboard-modal-background').remove()
+}
+
+<% if @product.errors.any? %>
+  dislpayErrors("<%= j render 'shop/products/form', product: @product %>")
+<% else %>
+  closeModal()
+  appendProduct("<%= j render 'shop/products/product', product: @product %>")
+<% end%>

@@ -1,0 +1,53 @@
+.store-dashboard-modal-background {
+  background: #00000094;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0px;
+}
+
+.store-dashboard-modal-container {
+
+  background: #f8f9fa;
+  position: relative;
+  padding: 50px;
+  height: 100%;
+  width: 80%;
+  overflow-y: scroll;  i {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+
+.new-product-form-flex-container{
+  display: flex;
+  justify-content:start;
+  .form-group:first-child{
+    width:30%
+  }
+  .form-group.hidden{
+    display: none
+  }
+  div{
+    margin-right: 16px;
+  }
+}
+
+.new-product-form-flex-container-picture-box{
+  display: flex;
+  align-items: center;
+  .new-product-form-flex-container-image{
+    img{
+      width: 80px;
+      object-fit: contain;
+    }
+  }
+}

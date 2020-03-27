@@ -1,0 +1,42 @@
+<% if @product.id.nil? %>
+  <% path = shop_products_path %>
+  <% method = :post %>
+  <% title = "Aggiungi un nuovo prodotto" %>
+<% else %>
+  <% path = shop_product_path %>
+  <% method = :patch %>
+  <%= title = "Modifica #{product.name}" %>
+<% end %>
+
+<h1><%= title %></h1>
+<%= simple_form_for product, url: path, method: method, remote: true do |f| %>
+  <%= f.input :name, label: "Nome Del Prodotto", input_html: { autocomplete: 'off' } %>
+  <%= f.association :category, label:"Categoria Prodotto" %>
+  <%= f.input :description, label: "Descrizione Del Prodotto" %>
+  <div class="new-product-form-flex-container">
+    <%= f.input :price, label: "Prezzo in €" %>
+    <%= f.input :sold_by, label: "Venduto per", collection: ["Confezione", "Kilo", "100g"] %>
+    <%= f.input :pack_weight, label: "Contenuto Confezione in Grammi", wrapper_html: {class:"#{product.sold_by == "Confezione" ? '' : 'hidden'}"} %>
+  </div>
+  <% if product.id %>
+    <%= f.input :discounted_price, label: "Vuoi scontare il prodotto? Inserisci il prezzo scontato (Lascia 0.00 se non applichi sconti)" %>
+  <% end %>
+  <% if product.id %>
+  <div class="d-flex">
+    <%= f.input :available, as: :radio_buttons, label: "Prodotto Disponibile?" %>
+  </div>
+  <% end %>
+  <%= f.input :sku %>
+  <div class="new-product-form-flex-container-picture-box">
+    <%= f.input :photo, as: :file, label: "Aggiungi una foto" %>
+    <div class="new-product-form-flex-container-image">
+      <% if product.photo.attached? %>
+        <%= cl_image_tag product.photo.key, height: 90, width: 90, crop: :fill %>
+      <% else %>
+        <%= image_tag 'no-picture-product' %>
+      <% end %>
+      </div>
+  </div>
+  <%= f.button :submit, "#{product.id ? "Aggiorna Prodotto" : "Crea Prodotto"}", class:"btn btn-dark" %>
+<% end %>
+
