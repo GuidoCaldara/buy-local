@@ -20,6 +20,8 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'pg_search'
 gem 'stripe'
 gem 'httparty'
+gem 'geocoder'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

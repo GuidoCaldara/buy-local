@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :models
+  devise_for :merchants
   root to: 'pages#home'
-  devise_for :shops
-  namespace :shop do
+  namespace :merchant do
     resources :products
     resources :stores
     resources :orders
   end
 
-  get 'store_dashboard', to: "shops#dashboard", as: :shop_dashboard
-  get 'shop/search_products', to: "shop/products#search_products", as: :search_shop_products
-  get 'shop/shop_products_list', to: "shop/products#shop_products_list", as: :shop_products_view
+  get 'store_dashboard', to: "merchants#dashboard", as: :merchant_dashboard
+  get 'merchant/search_products', to: "merchant/products#search_products", as: :search_merchant_products
+  get 'merchant/merchant_products_list', to: "merchant/products#merchant_products_list", as: :merchant_products_view
   devise_for :users
   get "stripe/connect", to: "stripe#connect", as: :stripe_connect
 

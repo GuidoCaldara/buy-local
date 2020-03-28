@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_102346) do
+ActiveRecord::Schema.define(version: 2020_03_27_125153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2020_03_27_102346) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "merchants", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "stripe_merchant_id"
+    t.index ["email"], name: "index_merchants_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -59,19 +72,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_102346) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
-  create_table "shops", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "stripe_shop_id"
-    t.index ["email"], name: "index_shops_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
-  end
-
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.string "street"
@@ -81,10 +81,13 @@ ActiveRecord::Schema.define(version: 2020_03_27_102346) do
     t.string "country"
     t.text "description"
     t.string "phone_number"
-    t.bigint "shop_id", null: false
+    t.bigint "merchant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["shop_id"], name: "index_stores_on_shop_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "street_number"
+    t.index ["merchant_id"], name: "index_stores_on_merchant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,5 +105,5 @@ ActiveRecord::Schema.define(version: 2020_03_27_102346) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
-  add_foreign_key "stores", "shops"
+  add_foreign_key "stores", "merchants"
 end

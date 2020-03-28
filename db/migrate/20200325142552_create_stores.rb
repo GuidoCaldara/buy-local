@@ -9,7 +9,7 @@ class CreateStores < ActiveRecord::Migration[6.0]
       t.string :country
       t.text :description
       t.string :phone_number
-      t.references :shop, null: false, foreign_key: true
+      t.references :merchant, null: false, foreign_key: true
 
       t.timestamps
     end

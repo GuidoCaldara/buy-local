@@ -13,7 +13,7 @@ class StripeController < ApplicationController
         notice: response.parsed_response["error_description"]
     else
       stripe_user_id = response.parsed_response["stripe_user_id"]
-      current_shop.update_attribute(:stripe_user_id, stripe_user_id)
+      current_merchant.update_attribute(:stripe_user_id, stripe_user_id)
       redirect_to store_dashboard_path,
         notice: 'User successfully connected with Stripe!'
     end

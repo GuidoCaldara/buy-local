@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, unless: :shop_controller
+  before_action :authenticate_user!, unless: :merchant_controller
 
 
-  def shop_controller
-    current_shop
+  def merchant_controller
+    current_merchant
   end
 end

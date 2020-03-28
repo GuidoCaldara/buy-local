@@ -1,0 +1,53 @@
+function initFormVariableFields(){
+ const formInput = document.querySelector(".product_pack_weight")
+ const select = document.querySelector("#product_sold_by")
+ if (select) {
+  select.addEventListener("change", (e) => {
+    if (e.target.value === "Confezione"){
+      formInput.classList.toggle("hidden")
+    } else{
+       formInput.classList.add("hidden")
+    }
+  })
+ }
+}
+
+function closeModal(){
+  const background = document.querySelector(".store-dashboard-modal-background")
+  var modal = document.querySelector('.store-dashboard-modal-background')
+  background.addEventListener("click", (e) => {
+      if (e.target === background){
+        modal.remove()
+      }
+  })
+  var btn = document.querySelector('.close-store-dashboard-modal')
+  btn.addEventListener('click', () => {
+    modal.remove()
+  })
+}
+
+function loadFile(event){
+  var output = document.querySelector('.new-product-form-flex-container-image img');
+  output.src = URL.createObjectURL(event.target.files[0]);
+  output.onload = function() {
+    URL.revokeObjectURL(output.src) // free memory
+  }
+}
+
+function initPhotoPreview(){
+  const input = document.querySelector("#product_photo")
+  if (input){
+    input.addEventListener("change", loadFile);
+  }
+}
+
+
+var body = document.querySelector('body')
+body.insertAdjacentHTML('afterbegin', "<%= j render 'merchant/products/merchant-dashboard-modal' %>")
+var modalBody = document.querySelector('.store-dashboard-modal-body')
+modalBody.innerHTML = '<%= j render "merchant/products/form", product: @product %>'
+
+
+initPhotoPreview()
+initFormVariableFields()
+closeModal()
