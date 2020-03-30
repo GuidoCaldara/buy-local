@@ -1,0 +1,37 @@
+<div data-id="card-<%=cart_product.id%>" class="cart-product-card">
+  <div class="row">
+  <div class="col-md-2 col-6 cart-product-card__img">
+    <% if cart_product.product.photo.attached? %>
+      <%= cl_image_tag cart_product.product.photo.key, width:150, height:200, crop: :fill %>
+    <% else %>
+      <%= image_tag 'no-picture-product' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-6">
+    <h3><%= cart_product.product.name %></h3>
+    <p><%= current_price(cart_product.product) %> / <%= cart_product.product.sold_by %> </p>
+  </div>
+  <div class="col-md-3 col-5 cart-product-card__quantity">
+    <h3>Quantità:</h3>
+    <div>
+      <%= link_to remove_cart_product_path(cart_product), remote: true, method: :patch do %>
+        <i class="fas fa-minus-circle remove amount-btn"></i>
+      <% end %>
+      <span data-id="quantity-<%=cart_product.id%>" class="quantity-ordered"><%= cart_product.quantity %></span>
+      <%= link_to add_cart_product_path(cart_product), method: :patch,remote: true do %>
+        <i class="fas fa-plus-circle add amount-btn"></i>
+      <% end %>
+
+    </div>
+  </div>
+    <div class="col-md-3 col-5 cart-product-card__price">
+      <h3>Totale:</h3>
+      <span class="product-total-price" data-id="price-<%=cart_product.id%>"><%= cart_product.price %>€</span>
+    </div>
+  <div class="col-md-1 col-2 cart-product-card__delete">
+    <%= link_to cart_product, method: :delete, data: {confirm: "Sei Sicuro di Voler eliminare #{cart_product.product.name}"}, remote: true do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </div>
+  </div>
+</div>

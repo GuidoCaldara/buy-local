@@ -1,0 +1,5 @@
+document.querySelector('[data-id="quantity-<%= @cart_product.id%>"]').innerText = "<%= @cart_product.quantity %>"
+document.querySelector('[data-id="price-<%= @cart_product.id%>"]').innerText = "<%= @cart_product.price %>€"
+document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= prettify_price(@cart_product.cart.total_price) %>€"
+document.querySelector('.total-price-in-basket').innerText = "<%= total_price_in_cart(current_user) %>"
+document.querySelector('.total_products_in_cart').innerText = "<%= product_in_cart(current_user) %>"

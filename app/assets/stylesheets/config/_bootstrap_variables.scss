@@ -6,12 +6,12 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $body-background;
 $font-size-base: 1rem;
 
 // Colors
 $body-color: $text-color;
-$primary:    $blue;
+$primary:    $red;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -23,3 +23,12 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+$input-border-color: #e6e6e6;
+$input-border-radius: 4px;
+$h3-big-size: 24px;
+$h3-medium-size: 20px;
+$h3-small-size: 16px !important;
+$p-small-size: 12px;
+$p-medium-size: 14px;
+$p-large-size: 16px;
+$label-size: 16px;

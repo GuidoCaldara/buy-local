@@ -22,6 +22,7 @@ gem 'stripe'
 gem 'httparty'
 gem 'geocoder'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'stripe_event'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

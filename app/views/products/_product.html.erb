@@ -1,0 +1,33 @@
+<div class="card-wrapper product-card">
+  <%= link_to new_product_cart_product_path(product), remote: true do %>
+  <div class="cart-img">
+    <i class="fas fa-cart-plus"></i>
+  </div>
+  <% end %>
+  <% if product.photo.attached? %>
+    <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill %>
+  <% else %>
+    <%= image_tag 'no-picture-product' %>
+  <% end %>
+  <div class="product-card__body">
+    <div class="product-card__body__info">
+      <small><%= product.category.name %></small>
+      <h3><%= product.name %></h3>
+      <p><%= product.description %></p>
+    </div>
+  <div class="product-card__footer">
+    <div class="product-card__footer__price">
+      <div>
+        <% if product.on_sale? %>
+          <span class="product-card__footer__price__integer"><%= integer_discounted_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_discounted_price(product) %>€</span>
+          <del><%= product.price %>€</del> /<span> <%= product.sold_by %></span>
+      <% else %>
+        <span class="product-card__footer__price__integer"><%= integer_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_price(product) %>€ /</span>
+        <span class="product-card__footer__sold-by"> <%= product.sold_by %></span>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>

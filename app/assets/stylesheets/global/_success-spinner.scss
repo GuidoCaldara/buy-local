@@ -1,0 +1,82 @@
+//colours
+$bodyBg: #333;
+$spinnerSize: 100px;
+$strokeColor: red;
+
+.spinner-animate-to-result {
+  margin: 0 auto;
+  padding-top: 40px;
+  width: $spinnerSize;
+}
+
+.spinner {
+  animation-name: spinner-anim;
+  animation-duration: 500ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50px 50px;
+  transition: opacity 300ms;
+  fill:none;
+  stroke:$strokeColor;
+  stroke-width:3;
+  stroke-linecap:round;
+  &.--spinner-complete {
+    opacity: 0;
+  }
+}
+
+@keyframes spinner-anim {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.success-ring {
+  stroke-dasharray: 285;
+  stroke-dashoffset: -257;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  fill:none;
+  stroke:$strokeColor;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width:2;
+  &.--ring-complete {
+    animation: success-ring 200ms ease-in forwards;
+    opacity: 1;
+  }
+}
+@keyframes success-ring {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 100;
+  }
+}
+
+.tick {
+  stroke-dasharray: 110;
+  stroke-dashoffset: -110;
+  fill:none;
+  stroke:$strokeColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  &.--tick-complete {
+    animation: tick-anim 1s ease-in forwards;
+    stroke-width: 4;
+  }
+}
+
+@keyframes tick-anim {
+  0% {
+    stroke-dashoffset: -110;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

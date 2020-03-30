@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_125153) do
+ActiveRecord::Schema.define(version: 2020_03_29_051049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,50 @@ ActiveRecord::Schema.define(version: 2020_03_27_125153) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cart_products", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.integer "quantity", default: 0
+    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
+    t.index ["product_id"], name: "index_cart_products_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "store_id", null: false
+    t.boolean "completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_carts_on_store_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "delivery_infos", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street"
+    t.string "zip_code"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.text "notes"
+    t.string "email"
+    t.string "phone_prefix", default: "+39"
+    t.bigint "order_id", null: false
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_delivery_infos_on_order_id"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -53,6 +93,17 @@ ActiveRecord::Schema.define(version: 2020_03_27_125153) do
     t.string "stripe_merchant_id"
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.string "status", default: "pending"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "number"
+    t.string "checkout_session_id"
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -103,6 +154,12 @@ ActiveRecord::Schema.define(version: 2020_03_27_125153) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_products", "carts"
+  add_foreign_key "cart_products", "products"
+  add_foreign_key "carts", "stores"
+  add_foreign_key "carts", "users"
+  add_foreign_key "delivery_infos", "orders"
+  add_foreign_key "orders", "carts"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "stores"
   add_foreign_key "stores", "merchants"

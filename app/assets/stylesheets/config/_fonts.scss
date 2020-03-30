@@ -1,13 +1,25 @@
-// Import Google fonts
 @font-face {
-  font-family: "San Francisco";
-  font-weight: 400;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+    font-family: "SF Pro Text";
+    src: url("fonts/sf-pro-text/SF-Pro-Text-Light.otf") format("opentype");
+    font-weight: 300;
 }
 
+@font-face {
+    font-family: "SF Pro Text";
+    src: url("fonts/sf-pro-text/SF-Pro-Text-Regular.otf") format("opentype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "SF Pro Text";
+    src: url("fonts/sf-pro-text/SF-Pro-Text-Semibold.otf") format("opentype");
+    font-weight: 600;
+}
+
+
 // Define fonts for body and headers
-$body-font: "San Francisco";
-$headers-font: "San Francisco";
+$body-font: "SF Pro Text";
+$headers-font: "CircularStd";
 
 
 // To use a font file (.woff) uncomment following lines

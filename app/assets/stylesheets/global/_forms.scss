@@ -1,0 +1,22 @@
+input{
+  border: 1px solid $input-border-color !important;
+  border-radius: $input-border-radius
+}
+
+label{
+  font-weight: 100;
+  color: $text-color;
+  font-size: $label-size !important
+}
+
+.form-control{
+  font-weight: 100 !important;
+  color: $light-gray-light-bk !important
+}
+
+form{
+  .row{
+        margin-bottom: 14px;
+
+  }
+}

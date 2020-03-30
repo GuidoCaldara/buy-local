@@ -1,0 +1,31 @@
+.cart-title-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.order-status-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+    padding-right: 25px;
+  p{
+    font-size: 16px;
+    font-weight: 100;
+    color: $light-gray-light-bk
+  }
+}
+.delivery-time-box{
+  h3{
+    font-size: 16px;
+    margin-bottom: 3px
+  }
+  p{
+    font-size: 16px;
+    font-weight: 100;
+    color: $light-gray-light-bk
+
+  }
+}

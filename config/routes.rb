@@ -1,10 +1,32 @@
 Rails.application.routes.draw do
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
   devise_for :merchants
   root to: 'pages#home'
   namespace :merchant do
     resources :products
     resources :stores
     resources :orders
+  end
+  resources :carts, only: [:index, :edit] do
+    resources :orders, only: [:create]
+  end
+  resources :orders, only: [:show] do
+    resources :delivery_infos, only: [:new, :create]
+    resources :payments, only: [:new, :create]
+    member do
+      get :delivery_info
+    end
+  end
+
+  resources :stores, only: [:index, :show]
+  resources :products, only: [:show] do
+    resources :cart_products, only:[:new, :create]
+  end
+  resources :cart_products, only: [:destroy] do
+    member do
+      patch :add
+      patch :remove
+    end
   end
 
   get 'store_dashboard', to: "merchants#dashboard", as: :merchant_dashboard

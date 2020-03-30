@@ -1,0 +1,30 @@
+.order-summary-card{
+  border-bottom: 1px solid #F4F4F4;
+  padding: 17px 0px;
+  p{
+    font-size: $p-medium-size;
+    color: gray;
+    margin-bottom: 2px
+  }
+  h3{
+    font-size: $h3-small-size;
+  }
+  &__header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    div{
+      display: flex;
+      align-items: center;
+
+    }
+    h3{
+      font-size:$h3-medium-size !important;
+      margin-right: 20px;
+    }
+    p{
+      font-size: $h3-small-size;
+      margin-right: 14px
+    }
+  }
+}

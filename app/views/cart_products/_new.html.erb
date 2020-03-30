@@ -1,0 +1,39 @@
+<div class="new-cart-product-form">
+  <div class="new-cart-product-form__img">
+  <% if product.photo.attached? %>
+    <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill %>
+  <% else %>
+    <%= image_tag 'no-picture-product' %>
+  <% end %>
+  </div>
+  <div class="new-cart-product-form__body">
+   <h3><%= product.name %></h3>
+   <p><%= current_price(product) %>€ / <%= product.sold_by %></p>
+    <div class="new-cart-product-form__body__amount">
+    <p>Quantità:</p>
+    <div>
+       <i class="fas fa-minus-circle remove amount-btn"></i>
+       <span class="amount">1</span>
+       <i class="fas fa-plus-circle add amount-btn"></i>
+          </div>
+      <p class="unit-type"><%= product.sold_by  %></p>
+   </div>
+    <div class="total-price-box">
+      <h3>Totale:</h3>
+     <p class="total-price-row">
+      <span class="total-price ml-3" data-price="<%= current_price(product) %>"><%= current_price(product) %></span>€
+     </p>
+   </div>
+
+
+   <%= simple_form_for [product, cart_product], remote: true do |f| %>
+    <div class="new-cart-product-form__body__form_content">
+      <div>
+        <input hidden id="amount-input" type="" name="cart_product[quantity]" value="1">
+        <input hidden id="total-price-input" type="" name="cart_product[total_price]" value="<%= current_price(product) %>">
+      </div>
+      <%= f.submit "Conferma", class: "btn btn-primary" %>
+    </div>
+   <% end %>
+  </div>
+</div>

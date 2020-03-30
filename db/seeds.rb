@@ -26,7 +26,7 @@ Merchant.create(email: Faker::Internet.email, password:"password", stripe_mercha
 end
 
 i = 0
-Merchant.each do |m|
+Merchant.all.each do |m|
 
   Store.create(
   name: "Negozio #{i + 1}",

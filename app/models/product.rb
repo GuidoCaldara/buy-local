@@ -10,5 +10,7 @@ class Product < ApplicationRecord
                 using: {
                   tsearch: { prefix: true , dictionary: "italian" }
                 }
-
+  def on_sale?
+    self.discounted_price_cents != 0
+  end
 end

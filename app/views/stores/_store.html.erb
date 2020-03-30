@@ -1,0 +1,30 @@
+<div class="card-wrapper store-card <%= 'shop-page' if show %>">
+  <div class="store-card__img <%= 'shop-page' if show %>">
+    <i class="carousel-card-arrow fas fa-chevron-left" data-id="<%= store.id %>"></i>
+    <img data-image-store="<%= store.id %>" class="active" src="https://loremflickr.com/320/240/dog">
+    <img data-image-store="<%= store.id %>" src="https://loremflickr.com/320/240/ferrari">
+    <img data-image-store="<%= store.id %>" src="https://loremflickr.com/320/240/motorbike">
+    <i class="fas fa-chevron-right" data-id="<%= store.id %>"></i>
+  </div>
+  <%= link_to store do %>
+  <div class="store-card__body <%= 'shop-page' if show %>">
+    <div class="store-card__body__title">
+      <div class="store-card__body__categories">
+        <span>CARNI</span>
+        <span>FORMAGGI</span>
+      </div>
+      <h1><%= store.name %></h1>
+      <p><%= short_address(store) %></p>
+    </div>
+    <div class="store-card__body__description <%= 'index' if action_name == "index" %>">
+      <p><%= store.description.truncate(130) %></p>
+    </div>
+    <div class="store-card__body__delivery">
+      <p>Consegna Entro domani ore 12.00</p>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+

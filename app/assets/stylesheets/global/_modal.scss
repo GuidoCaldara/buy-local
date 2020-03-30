@@ -1,0 +1,29 @@
+.app-modal-background {
+  background: #00000094;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0px;
+}
+
+.app-modal-container {
+  background: white;
+  border-radius: 14px;  width: 100%;
+  position: relative;
+  padding: 30px;
+  width: 30%;
+  .close-app-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+    cursor: pointer;
+    color: $light-gray-light-bk
+  }
+}
+
+

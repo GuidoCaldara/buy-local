@@ -1,35 +1,35 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
+<div class="navbar-top">
+  <div class="navbar-top__left">
+    <div class="navbar-top__logo">
+      <%= image_tag 'logo.png' %>
+    </div>
+    <div class="navbar-top__form">
+    <form>
+      <input type="text" name="query" class="form-control" placeholder="&#xf002  Cerca un paese..." autocomplete="off">
+    </form>
+    </div>
   </div>
+  <div class="navbar-top__links">
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Accedi", new_user_session_path %>
+      <%= link_to "Registrati", new_user_registration_path %>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="navbar-top__cart">
+      <%= link_to carts_path do %>
+        <div class="navbar-top__cart__img">
+          <div class="total_products_in_cart"><%= product_in_cart(current_user) %>
+          </div>
+          <%= image_tag 'cart-logo.svg' %>
+        </div>
+      <% end %>
+      <div class="navbar-top__cart__info">
+        <p>Il mio carrello:</p>
+        <span class="total-price-in-basket"><%= total_price_in_cart(current_user) %>€</span>
+      </div>
+    </div>
+  <% end %>
 </div>

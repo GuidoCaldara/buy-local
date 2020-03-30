@@ -1,0 +1,43 @@
+
+// function appendProduct(productCard){
+//   const container = document.querySelector('.product-list-container')
+//   container.insertAdjacentHTML('afterbegin', productCard)
+// }
+function startSpinner(){
+  var animPhaseOne = 200;
+  var animPhaseTwo = animPhaseOne + 750;
+
+  setTimeout(function() {
+    document.getElementById('js-spinner').classList.add('--spinner-complete');
+  }, animPhaseOne);
+
+  setTimeout(function() {
+    document.getElementById('js-success-tick').classList.add('--tick-complete');
+  }, animPhaseOne);
+
+  setTimeout(function() {
+    document.getElementById('js-success-ring').classList.add('--ring-complete');
+  }, animPhaseOne);
+}
+function dislpayErrors(form){
+  const formContainer = document.querySelector('.app-modal-body')
+  formContainer.innerHTML = form
+}
+
+function closeModal(){
+  document.querySelector('.app-modal-background').remove()
+}
+
+<% if @product.errors.any? %>
+dislpayErrors("<%= j render 'cart_products/new', product: @product %>")
+<% else %>
+var totalProducts = "<%= product_in_cart(current_user) %>"
+var totalPrice = "<%= total_price_in_cart(current_user) %>"
+document.querySelector('.total_products_in_cart').innerText = totalProducts
+document.querySelector('.total-price-in-basket').innerText = totalPrice + "€"
+document.querySelector('.app-modal-body').innerHTML = "<%= j render 'shared/success-spinner' %>"
+startSpinner()
+setTimeout(()=>{
+  closeModal()
+}, 1600)
+<% end%>

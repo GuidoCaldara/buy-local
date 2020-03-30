@@ -1,0 +1,52 @@
+function updateDom(newAmount){
+  const price = document.querySelector(".total-price")
+  const amountInput = document.querySelector("#amount-input")
+  const totalPriceInput = document.querySelector("#total-price-input")
+  const prevPrice = parseFloat(price.dataset.price)
+  const newPrice = newAmount * prevPrice
+  document.querySelector(".amount").innerText = newAmount
+  price.innerText = newPrice.toFixed(2)
+  amountInput.value= newAmount
+  totalPriceInput.value = newPrice.toFixed(2)
+}
+
+function changePrice(){
+  const btns = document.querySelectorAll(".amount-btn")
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (e) =>{
+      let amount = parseInt(document.querySelector(".amount").innerText)
+      if (e.target.classList.contains("add")){
+       amount = amount + 1
+       updateDom(amount)
+
+      } else{
+        if (amount === 0) return
+         amount = amount - 1
+        updateDom(amount)
+      }
+    })
+  })
+}
+
+
+
+function closeModal(){
+  const background = document.querySelector(".app-modal-background")
+  var modal = document.querySelector('.app-modal-background')
+  background.addEventListener("click", (e) => {
+      if (e.target === background){
+        modal.remove()
+      }
+  })
+  var btn = document.querySelector('.close-app-modal')
+  btn.addEventListener('click', () => {
+    modal.remove()
+  })
+}
+
+var body = document.querySelector('body')
+body.insertAdjacentHTML('afterbegin', "<%= j render 'shared/modal-component' %>")
+var modalBody = document.querySelector('.app-modal-body')
+modalBody.innerHTML = '<%= j render "cart_products/new", product: @product, cart_product: @cart_product %>'
+closeModal()
+changePrice()

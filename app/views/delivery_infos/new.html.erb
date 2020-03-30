@@ -1,0 +1,78 @@
+<div class="container py-5">
+  <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
+    <div class="order-summary-card my-3">
+      <div class="order-summary-card__header">
+        <div class="">
+          <p>Ordine:</p>
+          <h3><%= @order.number %></h3>
+        </div>
+        <div class="">
+          <p>Stato:</p>
+          <h3><%= @order.status  %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p>Negozio:</p>
+          <h3><%= @order.store.name  %></h3>
+        </div>
+        <div class="col-md-3">
+          <p>IMPORTO TOTALE:</p>
+          <h3><%= @order.amount  %>€</h3>
+        </div>
+        <div class="col-md-3">
+          <p>DATA:</p>
+          <h3><%= @order.created_at.strftime("%d/%m/%Y")  %></h3>
+        </div>
+        <div class="col-md-3">
+          <p>STATO:</p>
+          <h3><%= @order.status  %></h3>
+        </div>
+      </div>
+    </div>
+    <h3 class="new-delivery-info-form-title">Inserisci le informazioni per la consegna</h3>
+    <%= simple_form_for [@order, @delivery_info] do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :first_name, input_html: {value: "#{@last_info.first_name}"}, label: "Nome" %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :last_name, input_html: {value: "#{@last_info.last_name}"}, label: "Cognome" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <%= f.input :street, input_html: {value: "#{@last_info.street}"}, label: "Via"  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :city, input_html: {value: "#{@last_info.city}"}, label: "Città" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :zip_code,input_html: {value: "#{@last_info.zip_code}"}, label: "Cap"  %>
+      </div>
+      <div class="col-md-4">
+        <%= f.input :state,input_html: {value: "#{@last_info.state}"}, label: "Provincia"  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Recapito Telefonico</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">+39
+            </div>
+          </div>
+          <input type="text" name="delivery_info[phone_number]" value="<%= @last_info.phone_number %>"class="form-control" id="inlineFormInputGroup" placeholder="Username">
+        </div>
+      </div>
+      <div class="col-md-6">
+          <%= f.input :email,input_html: {value: "#{current_user.email}"}  %>
+      </div>
+    </div>
+    <%= f.input :notes, label: "Note per la consegna (facoltativo)" %>
+    <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
