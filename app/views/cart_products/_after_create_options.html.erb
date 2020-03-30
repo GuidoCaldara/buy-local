@@ -1,0 +1,11 @@
+<div class="after-add-box">
+  <div class="after-add-box__headline">
+     <h3><%= cart_product.product.name %> è stato aggiunto al tuo carrello</h3>
+  </div>
+  <div class="after-add-box__actions">
+    <button class ="btn btn-primary" id="close-modal-btn-link">Continua ad acquistare</button>
+
+    <%= link_to "Vai al carrello", carts_path, class:"btn btn-secondary" %>
+
+  </div>
+</div>

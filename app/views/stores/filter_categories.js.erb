@@ -1,0 +1,4 @@
+console.log("<%= @stores.count%>")
+var container = document.querySelector(".stores-list-container")
+container.innerHTML = "<%= j render @stores %>"
+displayMarkers(indexMap, JSON.parse("<%= j raw @markers.to_json %>"))

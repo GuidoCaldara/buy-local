@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :stores, only: [:index, :show]
+  resources :stores, only: [:index, :show] do
+    collection do
+      get :filter_categories
+    end
+  end
   resources :products, only: [:show] do
     resources :cart_products, only:[:new, :create]
   end
@@ -29,6 +33,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'dashboard', to: "users#dashboard", as: :user_dashboard
   get 'store_dashboard', to: "merchants#dashboard", as: :merchant_dashboard
   get 'merchant/search_products', to: "merchant/products#search_products", as: :search_merchant_products
   get 'merchant/merchant_products_list', to: "merchant/products#merchant_products_list", as: :merchant_products_view

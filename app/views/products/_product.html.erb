@@ -1,7 +1,7 @@
 <div class="card-wrapper product-card">
   <%= link_to new_product_cart_product_path(product), remote: true do %>
   <div class="cart-img">
-    <i class="fas fa-cart-plus"></i>
+    <%= image_tag 'cart-logo-white-small.svg' %>
   </div>
   <% end %>
   <% if product.photo.attached? %>

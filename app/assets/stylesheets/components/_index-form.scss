@@ -1,4 +1,32 @@
+
 .index-form-container{
   background: white;
   padding: 10px 10px;
+}
+
+.stores-form-filter{
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  background: white;
+  padding: 16px;
+  h3{
+    font-size: $h3-small-size;
+    margin-bottom: 18px
+  }
+  .category-filter-label{
+    font-size:14px !important;
+    border: 1px solid #cacaca;
+    border-radius: 6px;
+    padding: 1px 7px;
+    margin-right: 4px;
+    cursor: pointer;
+    color: #888888;
+    &.selected{
+      background: #FF7171;
+      color: white;
+      border-color: #FF7171;
+    }
+  }
 }

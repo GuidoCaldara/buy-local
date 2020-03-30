@@ -1,20 +1,34 @@
-
+<div class="stores-form-filter">
+  <form id="stores-category-filter" action="/stores/filter_categories" data-remote="true">
+    <h3>Filtra negozi in base ai prodotti</h3>
+    <% @categories.each do |category| %>
+      <label class="category-filter-label" for="<%= category.id %>"><%= category.name %></label>
+      <input hidden type="checkbox" name="categories[]" id="<%= category.id %>" value="<%= category.id %>">
+    <% end %>
+  </form>
+</div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-7">
-      <% Store.all.each do |store| %>
-        <%= render 'store', store: store, show: false %>
-      <% end %>
-    </div>
-    <div class="col-md-5 .d-sm-none">
-      <div id="map"
-       style="width: 100%;
-       height: 100vh;"
-       data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    <% if @stores.any? %>
+      <div class="col-md-7 stores-list-container">
+        <% @stores.each do |store| %>
+          <%= render 'store', store: store, show: false %>
+        <% end %>
       </div>
-    </div>
+      <div class="col-md-5 d-sm-blockaccount.svg">
+        <div id="map"
+         style="width: 100%;
+         height: 100vh;"
+         data-markers="<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    <% else %>
+      <h3 class="no-results-text mx-auto py-5">Ops, nessun negozio in questa zona :(</h3>
+    <% end %>
   </div>
 </div>
 
+<script type="text/javascript">
 
+</script>

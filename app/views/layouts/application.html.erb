@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
   <body>
-      <% unless current_merchant %>
+      <% unless current_merchant || action_name == "home"%>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>

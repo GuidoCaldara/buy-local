@@ -1,0 +1,13 @@
+
+<h1>Il tuo spazio personale</h1>
+
+<div class="container py-5">
+  <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
+    <h3>I tuoi ordini</h3>
+
+    <% @orders.each do |order| %>
+      <%= render 'orders/order', order: order %>
+
+    <% end %>
+</div>
+</div>

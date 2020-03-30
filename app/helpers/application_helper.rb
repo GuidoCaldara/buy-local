@@ -3,7 +3,7 @@ module ApplicationHelper
     CartProduct.joins(:cart).where("carts.user_id = ? AND carts.completed = ?", user, false).sum(:quantity)
   end
   def total_price_in_cart(user)
-    price = CartProduct.joins(:cart).where("carts.user_id = ? AND carts.completed = ?", User.first.id, false).sum(:price_cents)
+    price = user.cart_products.sum(:price_cents)
     return '0.00' if price.zero?
     #return "#{price.to_s}.00" if price.to_s.length == 1 || price.to_s.length == 2
     price.to_s.insert(-3,".")
@@ -25,5 +25,16 @@ module ApplicationHelper
 
   def short_address(store)
     "#{store.street} #{store.street_number}, #{store.city}"
+  end
+
+  def order_status(order)
+    case order.status
+    when "pending"
+      return "In attesa di Pagamento"
+    when "paied"
+      return "Pagato. In consegna"
+    when "completed"
+      return "consegnato"
+    end
   end
 end

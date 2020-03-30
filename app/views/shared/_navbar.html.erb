@@ -1,35 +1,54 @@
-<div class="navbar-top">
+<div class="navbar-top" data-turbolinks="false">
   <div class="navbar-top__left">
     <div class="navbar-top__logo">
       <%= image_tag 'logo.png' %>
     </div>
     <div class="navbar-top__form">
-    <form>
-      <input type="text" name="query" class="form-control" placeholder="&#xf002  Cerca un paese..." autocomplete="off">
-    </form>
+      <form id="navbar-search-form" action="/stores" method="GET">
+        <div>
+          <input type="text" name="query" class="form-control" placeholder="Cerca un paese..." id="navbar-search-form-input" value="<%= session[:place_query] %>"autocomplete="off">
+        </div>
+      </form>
     </div>
   </div>
   <div class="navbar-top__links">
     <% if user_signed_in? %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% else %>
-      <%= link_to "Accedi", new_user_session_path %>
-      <%= link_to "Registrati", new_user_registration_path %>
+    <%= link_to "Accedi", new_user_session_path %>
+    <%= link_to "Registrati", new_user_registration_path %>
     <% end %>
   </div>
   <% if user_signed_in? %>
-    <div class="navbar-top__cart">
-      <%= link_to carts_path do %>
-        <div class="navbar-top__cart__img">
-          <div class="total_products_in_cart"><%= product_in_cart(current_user) %>
-          </div>
-          <%= image_tag 'cart-logo.svg' %>
-        </div>
-      <% end %>
-      <div class="navbar-top__cart__info">
-        <p>Il mio carrello:</p>
-        <span class="total-price-in-basket"><%= total_price_in_cart(current_user) %>€</span>
+  <div class="navbar-top__user">
+  <div class="navbar-top__cart">
+    <div class="navbar-top__cart__info">
+      <p>Il mio carrello:</p>
+      <span class="total-price-in-basket"><%= total_price_in_cart(current_user) %>€</span>
+    </div>
+    <%= link_to carts_path do %>
+    <div class="navbar-top__cart__img">
+      <div class="total_products_in_cart"><%= product_in_cart(current_user) %>
+      </div>
+      <%= image_tag 'cart-logo.svg' %>
+    </div>
+    <% end %>
+  </div>
+  <div class="navbar-top__account">
+    <%= image_tag 'person.svg' %>
+  </div>
+
+  </div>
+  <% end %>
+  <div class="navbar-link-menu hidden">
+    <div class="content">
+      <div class="link">
+        <%= link_to "Il tuo Profilo", destroy_user_session_path, method: :delete %>
+        <%= image_tag 'person.svg' %>
+      </div>
+      <div class="link">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <%= image_tag 'logout.svg' %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>

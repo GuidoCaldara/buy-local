@@ -2,13 +2,13 @@
   <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <div class="cart-title-wrapper">
       <div>
-        <h1>Riepilogo dell'ordine</h1>
+        <h1 class="cart-title">Riepilogo dell'ordine</h1>
       </div>
-      <div class="order-status-box">
+<!--       <div class="order-status-box">
         <h3>Stato dell'ordine:</h3>
-        <p><%= current_status(@order.status) %></p>
+        <p><%#= current_status(@order.status) %></p>
       </div>
-    </div>
+ -->    </div>
       <div class="cart-header">
         <h3><%= @order.store.name %></h3>
         <p><%= short_address(@order.store) %></p>

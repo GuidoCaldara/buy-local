@@ -1,8 +1,8 @@
-@font-face {
-    font-family: "SF Pro Text";
-    src: url("fonts/sf-pro-text/SF-Pro-Text-Light.otf") format("opentype");
-    font-weight: 300;
-}
+// @font-face {
+//     font-family: "SF Pro Text";
+//     src: url("fonts/sf-pro-text/SF-Pro-Text-Light.otf") format("opentype");
+//     font-weight: 300;
+// }
 
 @font-face {
     font-family: "SF Pro Text";
@@ -16,10 +16,11 @@
     font-weight: 600;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "SF Pro Text";
-$headers-font: "CircularStd";
+$body-font: 'Open Sans', sans-serif;
+$headers-font:"SF Pro Text";
 
 
 // To use a font file (.woff) uncomment following lines

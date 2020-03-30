@@ -11,7 +11,8 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $text-color;
-$primary:    $red;
+$primary:    $yellow;
+$secondary:  $light-gray-background;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -23,8 +24,8 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
-$input-border-color: #e6e6e6;
-$input-border-radius: 4px;
+$input-border-color: #efefef;
+$input-border-radius: 8px;
 $h3-big-size: 24px;
 $h3-medium-size: 20px;
 $h3-small-size: 16px !important;

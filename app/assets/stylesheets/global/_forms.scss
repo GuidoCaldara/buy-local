@@ -1,6 +1,10 @@
 input{
   border: 1px solid $input-border-color !important;
-  border-radius: $input-border-radius
+  border-radius: $input-border-radius;
+  font-family:  FontAwesome, "Open Sans", Verdana, sans-serif;
+  &:focus{
+    box-shadow: none !important
+  }
 }
 
 label{

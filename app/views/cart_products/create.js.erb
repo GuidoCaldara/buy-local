@@ -35,9 +35,11 @@ var totalProducts = "<%= product_in_cart(current_user) %>"
 var totalPrice = "<%= total_price_in_cart(current_user) %>"
 document.querySelector('.total_products_in_cart').innerText = totalProducts
 document.querySelector('.total-price-in-basket').innerText = totalPrice + "€"
-document.querySelector('.app-modal-body').innerHTML = "<%= j render 'shared/success-spinner' %>"
-startSpinner()
-setTimeout(()=>{
-  closeModal()
-}, 1600)
+document.querySelector('.app-modal-body').innerHTML = "<%= j render 'after_create_options' , cart_product: @cart_product%>"
+var btn = document.querySelector('#close-modal-btn-link')
+btn.addEventListener('click', closeModal)
+// startSpinner()
+// setTimeout(()=>{
+//   closeModal()
+// }, 1600)
 <% end%>

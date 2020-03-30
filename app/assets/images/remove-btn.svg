@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>remove-btn</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="remove-btn" transform="translate(13.000000, 13.000000) scale(-1, 1) translate(-13.000000, -13.000000) " fill="#ACACAC" fill-rule="nonzero">
+            <path d="M13,0 C5.83192187,0 0,5.83192187 0,13 C0,20.1680781 5.83192187,26 13,26 C20.1680781,26 26,20.1680781 26,13 C26,5.83192187 20.1680781,0 13,0 Z M13,24.9166836 C6.42910938,24.9166836 1.08331641,19.5708906 1.08331641,13 C1.08331641,6.42910938 6.42910938,1.08331641 13,1.08331641 C19.5708906,1.08331641 24.9166836,6.42910938 24.9166836,13 C24.9166836,19.5708906 19.5708906,24.9166836 13,24.9166836 Z" id="Shape"></path>
+            <path d="M19.4643198,13 L5.53573043,13 C5.23961469,13 5,13.2236336 5,13.5 C5,13.7763664 5.23961469,14 5.53573043,14 L19.4642696,14 C19.7603853,14 20,13.7763664 20,13.5 C20,13.2236336 19.7604355,13 19.4643198,13 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

@@ -4,6 +4,7 @@
   padding: 5px 16px;
   width: 100%;
   display:flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   &__left{
@@ -21,21 +22,30 @@
     padding: 0px 24px;
     flex: 1;
     form{
-      width: 100%
+      width: 100%;
     }
   }
   &__links{
     a{
-      margin-right: 20px
+      margin-right: 20px;
+      font-weight: 100
     }
+  }
+  &__user{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: flex-end;
   }
   &__cart{
     display:flex;
     align-items: center;
     &__img{
-      background: #e4e4e4;
-      width: 60px;
-      height: 60px;
+      background: white;
+      margin-right: 15px;
+      border: 1px solid #FF7171;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -46,7 +56,7 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: red;
+        background: $yellow;
         top: 0px;
         right: 0px;
         display: flex;
@@ -77,15 +87,58 @@
       }
     }
   }
-}
-// .navbar-lewagon {
-//   justify-content: space-between;
-//   background: white;
-// }
+  &__account{
 
-// .navbar-lewagon .navbar-collapse {
-//   flex-grow: 0;
-// }
+    background: white;
+    border: 1px solid #e0e0e0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    img{
+      width: 20px;
+      cursor: pointer;
+    }
+  }
+  .navbar-link-menu{
+    background: white;
+    position: absolute;
+    height: auto;
+    top: 70px;
+    z-index: 11;
+    right: 8px;
+    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+    transition: height 0.15s ease-out;
+    -webkit-box-shadow: -1px 5px 15px 0px #efefef;
+    -moz-box-shadow: -1px 5px 15px 0px #efefef;
+    box-shadow: -1px 5px 15px 1px #efefef;
+    border: 1px solid #e8e8e8;
+    &.hidden{
+      height: 0px;
+      border: none;
+    }
+    .content{
+      padding: 23px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      font-weight: 100;
+      .link{
+        margin-bottom: 12px;
+        img{
+          margin-left: 8px;
+          width: 20px;
+        }
+      }
+    }
+  }
+}
 
 // .navbar-lewagon .navbar-brand img {
 //   width: 40px;

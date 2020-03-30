@@ -1,0 +1,18 @@
+.btn{
+  border-radius: 20px
+}
+
+.btn-primary{
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  &:hover{
+    color: white !important;
+    background: #ffdc71
+  }
+}
+
+.btn-secondary{
+  color: $yellow !important;
+  border: none !important;
+}

@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-banner">
+  <form id="home-banner-search-form" action="/stores" method="GET">
+      <input type="text" name="query" class="form-control" placeholder="Cerca un paese..." id="banner-search-form-input" value="<%= session[:place_query] %>"autocomplete="off">
+      <button type="submit" class="btn btn-primary">Cerca</button>
+  </form>
+</div>

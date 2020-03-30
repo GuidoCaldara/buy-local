@@ -27,3 +27,22 @@
 }
 
 
+@media screen and (max-width: 576px) {
+  .app-modal-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app-modal-container {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .app-modal-container {
+    width: 40%;
+  }
+}
+
+
