@@ -33,7 +33,7 @@
       <% if product.photo.attached? %>
         <%= cl_image_tag product.photo.key, height: 90, width: 90, crop: :fill %>
       <% else %>
-        <%= image_tag 'no-picture-product' %>
+        <%= image_tag 'no-picture-product.png' %>
       <% end %>
       </div>
   </div>

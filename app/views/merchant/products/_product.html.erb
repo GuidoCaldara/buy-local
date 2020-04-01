@@ -3,7 +3,7 @@
     <% if product.photo.attached? %>
     <%= cl_image_tag product.photo.key, width:20, height:20, crop: :fill %>
     <% else %>
-    <%= image_tag 'no-picture-product' %>
+    <%= image_tag 'no-picture-product.png' %>
     <% end %>
   </div>
   <div class="merchant-product-card-category">

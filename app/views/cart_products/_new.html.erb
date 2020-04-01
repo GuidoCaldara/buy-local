@@ -3,7 +3,7 @@
   <% if product.photo.attached? %>
     <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill %>
   <% else %>
-    <%= image_tag 'no-picture-product' %>
+    <%= image_tag 'no-picture-product.png' %>
   <% end %>
   </div>
   <div class="new-cart-product-form__body">
@@ -12,9 +12,9 @@
     <p class="new-cart-product-form__body__amount_header">Quantità:</p>
     <div class="new-cart-product-form__body__amount_body">
     <div>
-      <%= image_tag 'remove-btn', class:"remove amount-btn" %>
+      <%= image_tag 'remove-btn.svg', class:"remove amount-btn" %>
        <span class="amount">1</span>
-      <%= image_tag 'add-btn', class:"add amount-btn" %>
+      <%= image_tag 'add-btn.svg', class:"add amount-btn" %>
           </div>
       <p class="unit-type"><%= product.sold_by  %></p>
    </div>

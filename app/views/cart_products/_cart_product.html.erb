@@ -4,7 +4,7 @@
     <% if cart_product.product.photo.attached? %>
       <%= cl_image_tag cart_product.product.photo.key, width:150, height:200, crop: :fill %>
     <% else %>
-      <%= image_tag 'no-picture-product' %>
+      <%= image_tag 'no-picture-product.png' %>
     <% end %>
   </div>
   <div class="col-md-3 col-6">

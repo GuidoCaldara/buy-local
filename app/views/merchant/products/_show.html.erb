@@ -1,7 +1,7 @@
 <% if product.photo.attached? %>
   <%= cl_image_tag product.photo.key, width:300, height:300, crop: :fill %>
 <% else %>
-  <%= image_tag 'no-picture-product' %>
+  <%= image_tag 'no-picture-product.png' %>
 <% end %>
 
 <h1>Nome: <%= product.name %></h1>
