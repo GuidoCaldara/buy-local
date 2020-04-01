@@ -45,7 +45,7 @@ function closeModal(){
 }
 
 var body = document.querySelector('body')
-body.insertAdjacentHTML('afterbegin', "<%= j render 'shared/modal-component' %>")
+body.insertAdjacentHTML('afterbegin', "<%= j render 'shared/modal-component', signin: false %>")
 var modalBody = document.querySelector('.app-modal-body')
 modalBody.innerHTML = '<%= j render "cart_products/new", product: @product, cart_product: @cart_product %>'
 closeModal()
