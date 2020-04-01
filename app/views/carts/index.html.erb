@@ -1,13 +1,15 @@
-<div class="container py-5">
-  <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
+<div class="container pt-3">
+  <%= link_to "< Torna alla lista negozi", stores_path, class: "prev-page-link" %>
+  <div class="row">
+      <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <% if @carts.empty? %>
-      <h1>Non hai prodotti nel carrello</h1>
+       <h1 class="card-title">Non hai prodotti nel carrello</h1>
       <h3>Sfoglia tra i negozi e scohpri le delizie locali!</h3>
     <% else %>
-    <h3 class="cart-title">I prodotti nel tuo carrello</h3>
+     <h1 class="card-title">I prodotti nel tuo carrello</h1>
       <% @carts.each do |cart| %>
       <div class="cart-header">
-        <h3><%= cart.store.name %></h3>
+        <h3 class="card-subtitle"><%= cart.store.name %></h3>
         <p><%= short_address(cart.store) %></p>
         <%= link_to "Continua ad acquistare da #{cart.store.name}", cart.store  %>
       </div>
@@ -24,11 +26,20 @@
           </div>
           <div class="row">
             <div class="col-md-3 offset-md-8 total-price-row">
-              <%= link_to "Completa l'acquisto", cart_orders_path(cart), method: :post, class: 'btn btn-primary' %>
+              <% if cart.order %>
+                <%= link_to "Vedi l'ordine", order_path(cart.order), class: 'btn btn-primary' %>
+              <% end %>
+
+              <% if policy(Order.new(cart: cart)).create? %>
+                <%= link_to "Completa l'acquisto", cart_orders_path(cart), method: :post, class: 'btn btn-primary' %>
+              <% end %>
+                <%= link_to "Cancella l'ordine", cart_path(cart), method: :delete, class: 'btn btn-secondary mt-1' %>
             </div>
           </div>
 
       <% end %>
     <% end %>
+  </div>
+
   </div>
 </div>

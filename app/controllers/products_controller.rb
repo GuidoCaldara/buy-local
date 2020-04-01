@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  def index
-    @products = current_merchant.products
+  def show
+    @product = Product.find(params[:id])
+    @products = @product.store.products.where.not(id: @product.id)
+    authorize @product
   end
 end

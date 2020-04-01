@@ -1,0 +1,27 @@
+<div class="container py-5">
+  <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
+    <h3 class="cart-title">I prodotti nel tuo carrello</h3>
+      <div class="cart-header">
+        <h3><%= @order.store.name %></h3>
+        <p><%= short_address(@order.cart.store) %></p>
+        <%= link_to "Continua ad acquistare da #{@order.cart.store.name}", @order.cart.store  %>
+      </div>
+          <% @order.cart_products.each do |cart_product| %>
+            <%= render 'cart_products/cart_product', cart_product: cart_product %>
+          <% end %>
+          <div class="row py-3">
+            <div class="col-md-3 offset-md-8 cart-total-price-card">
+              <h3 class="cart-total-price-text">Totale Ordine: </h3>
+              <span data-id="cart-<%=@order.cart.id%>" class="cart-total-price"><%= prettify_price(@order.cart.total_price) %>€</span> <br/>
+              <div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 offset-md-8 total-price-row">
+                <%= link_to "Conferma l'ordine", @order, class: 'btn btn-primary' %>
+            </div>
+          </div>
+
+  </div>
+</div>

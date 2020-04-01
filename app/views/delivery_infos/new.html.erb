@@ -1,7 +1,7 @@
 <div class="container py-5">
   <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
-    <%= render 'orders/order', order: @order %>
-    <h3 class="new-delivery-info-form-title">Inserisci le informazioni per la consegna</h3>
+    <%= render 'orders/order', order: @order, show_link: false %>
+    <h1 class="card-title new-delivery-info-form-title">Inserisci le informazioni per la consegna</h1>
     <%= simple_form_for [@order, @delivery_info] do |f| %>
     <div class="row">
       <div class="col-md-6">
@@ -43,7 +43,7 @@
       </div>
     </div>
     <%= f.input :notes, label: "Note per la consegna (facoltativo)" %>
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.button :submit, "Conferma i dati", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

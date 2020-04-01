@@ -1,0 +1,45 @@
+
+.access-form{
+  &__header{
+    display: flex;
+    padding: 12px 0px;
+    border-bottom: 1px solid #a5a5a5;
+    div{
+      cursor: pointer;
+      margin-right: 24px;
+      display: flex;
+      align-items: center;
+      img{
+        width: 16px;
+        margin-right: 6px;
+      }
+      h3{
+        font-size: 16px;
+        font-weight: 100;
+        margin: 0;
+        border-bottom: 4px solid transparent;
+      &.selected{
+        border-bottom: 4px solid #ffc108;
+      }
+      }
+    }
+  }
+  &__body{
+    padding: 28px 0px;
+    .hidden{
+      display: none
+    }
+  }
+}
+
+.password-reset-link{
+
+    margin: 0 auto;
+    font-size: 12px;
+    color: gray !important;
+    display: flex;
+    justify-content: center;
+    font-weight: 100;
+    margin-top: 13px;
+
+}

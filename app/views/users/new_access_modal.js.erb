@@ -1,0 +1,28 @@
+function closeModal(){
+  const background = document.querySelector(".app-modal-background")
+  var modal = document.querySelector('.app-modal-background')
+  background.addEventListener("click", (e) => {
+      if (e.target === background){
+        modal.remove()
+      }
+  })
+  var btn = document.querySelector('.close-app-modal')
+  btn.addEventListener('click', () => {
+    modal.remove()
+  })
+}
+var body = document.querySelector('body')
+body.insertAdjacentHTML('afterbegin', "<%= j render 'shared/modal-component', signin: true %>")
+var modalBody = document.querySelector('.app-modal-body')
+modalBody.innerHTML = "<%= j render 'users/access-form' %>"
+closeModal()
+
+var accessBtns = document.querySelectorAll('.access-form__header div')
+accessBtns.forEach((btn) => {
+  btn.addEventListener("click",() => {
+    var forms = document.querySelectorAll('.access-form')
+    var headers = document.querySelectorAll('.access-form__header h3')
+    forms.forEach((form) => form.classList.toggle("hidden"))
+    headers.forEach((header) => header.classList.toggle("selected"))
+  })
+})

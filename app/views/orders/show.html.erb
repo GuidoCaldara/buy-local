@@ -1,16 +1,10 @@
 <div class="container py-5">
   <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <div class="cart-title-wrapper">
-      <div>
-        <h1 class="cart-title">Riepilogo dell'ordine</h1>
-      </div>
-<!--       <div class="order-status-box">
-        <h3>Stato dell'ordine:</h3>
-        <p><%#= current_status(@order.status) %></p>
-      </div>
- -->    </div>
+      <h1 class="card-title">Riepilogo dell'ordine</h1>
+    </div>
       <div class="cart-header">
-        <h3><%= @order.store.name %></h3>
+        <h3 class="card-subtitle"><%= @order.store.name %></h3>
         <p><%= short_address(@order.store) %></p>
       </div>
         <% @order.cart_products.each do |cart_product| %>
@@ -30,13 +24,23 @@
           </div>
           <div class="row">
             <div class="col-md-3 total-price-row">
-              <%= link_to "Modifica l'ordine", edit_cart_path(@order.cart), class: 'btn btn-primary' %>
+              <% if policy(@order.cart).edit? %>
+                <%= link_to "Modifica l'ordine", edit_order_path(@order), class: 'btn btn-primary' %>
+                <%= link_to "Cancella l'ordine", order_path(@order), method: :delete, class: 'btn btn-secondary mt-2' %>
+              <% end %>
             </div>
 
             <div class="col-md-3 offset-md-5 total-price-row">
-              <%= link_to "Completa l'acquisto", new_order_delivery_info_path(@order), class: 'btn btn-primary' %>
+              <% if policy(DeliveryInfo.new(order: @order)).new? %>
+                <%= link_to "Completa l'acquisto", new_order_delivery_info_path(@order), class: 'btn btn-primary' %>
+              <% end %>
+              <% if policy(@order).can_be_payed? %>
+                <%= link_to "Paga l'ordine", new_order_payment_path(@order), class: 'btn btn-primary' %>
+              <% end %>
+
             </div>
           </div>
+  </div>
 
   </div>
 </div>

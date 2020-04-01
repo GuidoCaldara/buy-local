@@ -1,12 +1,15 @@
 class CartProductsController < ApplicationController
   before_action :authenticate_user!
+
   def new
     @product = Product.find(params[:product_id])
+    authorize CartProduct
     @cart_product = CartProduct.new
   end
 
   def create
     @product = Product.find(params[:product_id])
+    authorize CartProduct
     @cart = Cart.find_or_create_by(user: current_user, completed: false, store: @product.store)
     @cart_product = CartProduct.find_or_initialize_by(product: @product, cart: @cart)
     @cart_product.quantity += (params[:cart_product][:quantity]).to_i
@@ -15,18 +18,21 @@ class CartProductsController < ApplicationController
 
   def add
     @cart_product = CartProduct.find(params[:id])
+    authorize @cart_product
     @cart_product.quantity += 1
     @cart_product.save
   end
 
   def remove
     @cart_product = CartProduct.find(params[:id])
+    authorize @cart_product
     @cart_product.quantity -= 1 if @cart_product.quantity > 0
     @cart_product.save
   end
 
   def destroy
     @cart_product = CartProduct.find(params[:id])
+    authorize @cart_product
     @cart_product.destroy
   end
 

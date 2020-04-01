@@ -1,11 +1,15 @@
 <div class="container pt-3">
+  <%= link_to stores_path, class: "prev-page-link" do %>
+    <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
+  <% end %>
+
   <div class="row">
     <%= render 'stores/store', store: @store, show: true %>
   </div>
 </div>
 
 <div class="container py-5">
-  <h1 class="mb-4">Prodotti in vendita </h1>
+  <h1 class="mb-4 card-title">Prodotti in vendita </h1>
   <div class="row">
     <% @products.each do |product| %>
       <div class="col-lg-3 col-md-4 col-sm-6 mb-3">

@@ -2,14 +2,34 @@ class DeliveryInfosController < ApplicationController
   def new
     @last_info = current_user.delivery_infos.last ||DeliveryInfo.new()
     @order = Order.find(params[:order_id])
-    @delivery_info = DeliveryInfo.new()
+    @delivery_info = DeliveryInfo.new(order: @order)
+    authorize @delivery_info
   end
+
+
+  def edit
+    @delivery_info = DeliveryInfo.find(params[:id])
+    authorize @delivery_info
+  end
+
+  def update
+    @delivery_info = DeliveryInfo.find(params[:id])
+    authorize @delivery_info
+    @delivery_info.update(delivery_info_params)
+    if @delivery_info.save
+      redirect_to new_order_payment_path(@delivery_info.order)
+    else
+      render :edit
+    end
+  end
+
 
   def create
     @order = Order.find(params[:order_id])
     @delivery_info = DeliveryInfo.new(delivery_info_params)
     @delivery_info.country = "Italia"
     @delivery_info.order = @order
+    authorize @delivery_info
     if @delivery_info.save
       session = Stripe::Checkout::Session.create({
         payment_method_types: ['card'],

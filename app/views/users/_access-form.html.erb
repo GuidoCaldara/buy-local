@@ -1,0 +1,19 @@
+<div class="access-form">
+  <div class="access-form__header">
+    <div><%= image_tag 'lock.svg' %><h3 class="selected">Accedi</h3></div>
+    <div><%= image_tag 'person.svg' %><h3 class="">Registrati</h3></div>
+  </div>
+  <div class="access-form__body">
+    <div class="access-form__body__signup access-form hidden">
+      <%= render 'devise/registrations/new' %>
+    </div>
+    <div class="access-form__body__signin access-form">
+      <%= render 'devise/sessions/new' %>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+</script>

@@ -1,4 +1,18 @@
 a{
   color: $text-color !important;
   text-decoration: none !important;
+  display: flex;
+  align-items: center;
 }
+
+
+.prev-page-link{
+  font-weight: 100;
+  font-size: 14px;
+  color: #717171 !important;
+  img{
+    width: 18px;
+    margin-right: 10px
+  }
+}
+

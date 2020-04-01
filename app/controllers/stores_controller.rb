@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    @stores = Store.all
+    @stores = policy_scope(Store)
     if params[:query].present?
       @stores = @stores.near(params[:query], 5, {order: ""})
       session[:place_query] = params[:query]
@@ -18,6 +18,7 @@ class StoresController < ApplicationController
   end
 
   def filter_categories
+    authorize Store
     @stores = Store.where(id: session[:stores])
     if params[:categories]
       @stores = @stores.joins(products: :category).where(categories: {id: params[:categories] }).distinct
@@ -33,6 +34,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
+    authorize @store
     @products = @store.products
   end
 end

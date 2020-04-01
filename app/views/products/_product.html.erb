@@ -1,14 +1,23 @@
 <div class="card-wrapper product-card">
-  <%= link_to new_product_cart_product_path(product), remote: true do %>
-  <div class="cart-img">
-    <%= image_tag 'cart-logo-white-small.svg' %>
-  </div>
+  <% if user_signed_in? %>
+    <%= link_to new_product_cart_product_path(product), remote: true do %>
+    <div class="cart-img">
+      <%= image_tag 'cart-logo-white-small.svg' %>
+    </div>
+  <% end %>
+  <% else %>
+    <%= link_to new_access_modal_users_path, remote: true do %>
+    <div class="cart-img">
+      <%= image_tag 'cart-logo-white-small.svg' %>
+    </div>
+  <% end %>
   <% end %>
   <% if product.photo.attached? %>
     <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill %>
   <% else %>
     <%= image_tag 'no-picture-product' %>
   <% end %>
+  <%= link_to product do %>
   <div class="product-card__body">
     <div class="product-card__body__info">
       <small><%= product.category.name %></small>
@@ -30,4 +39,5 @@
     </div>
   </div>
   </div>
+  <% end %>
 </div>

@@ -3,23 +3,27 @@ CATEGORIES = ["Insaccati", "Frutta", "Verdura", "Formaggi", "Conserve", "Erbe", 
 CATEGORIES.each do |c|
   Category.create(name: c)
 end
+
+
+
+
 ROADS = ["Via Roma", "Via Milano", "Via Torino", "Via Provinciale", "Via Lunga", "Via Mazzini", "Via Duca d'aosta"]
 
-
-Merchant.create(email: "test@test.com", password:"password", stripe_merchant_id: 'acct_1GRFpjGsjp9i5xvM')
+Merchant.create(email: "guido@merchant.com", password:"password", stripe_merchant_id: 'acct_1GRFpjGsjp9i5xvM')
 
 Store.create(
-  name: "La mia Bottega",
+  name: "Negozio Prova Guido",
   country: "Italy",
   street: "Via Mazzini",
   zip_code: "24021",
   city: "Albino",
   street_number: 93,
   state: "Bergamo",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae sit exercitationem",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis modi, deserunt cumque, molestiae necessitatibus repellat eius dolorem ipsum suscipit dolor ea ducimus quod eos beatae fugit tempora mollitia quis delectus?",
   phone_number: "04305866949",
   merchant: Merchant.first
 )
+
 
 8.times do
 Merchant.create(email: Faker::Internet.email, password:"password", stripe_merchant_id: '')

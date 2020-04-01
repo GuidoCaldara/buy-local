@@ -1,0 +1,52 @@
+
+<div class="container pt-3">
+  <%= link_to  store_path(@product.store), class: "prev-page-link" do %>
+    <%= image_tag 'back-icon.svg' %> Torna alla pagina del negozio
+  <% end %>
+  <div class="row">
+    <div data-product-card-lg="" class="card-wrapper product-card-lg">
+      <div class="product-card-lg__img">
+        <img data-image-product="<%= @product.id %>" class="active" src="https://loremflickr.com/320/240/dog">
+      </div>
+      <div class="product-card-lg__body">
+        <div class="product-card-lg__body__title">
+          <div class="product-card-lg__body__categories">
+          </div>
+          <h1 class="card-title"><%= @product.name %></h1>
+          <p><%= @product.category.name %></p>
+        </div>
+        <div class="product-card-lg__body__description">
+          <p><%= @product.description %></p>
+        </div>
+        <div class="product-card-lg__body__delivery">
+          <p>Consegna Entro domani ore 12.00</p>
+          <%= link_to new_product_cart_product_path(@product), remote: true do %>
+          <div class="cart-box-logo btn btn-primary">
+            <%= image_tag 'cart-logo-white-small.svg' %>
+            Acquista
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <h1 class="mb-4 card-title">Altri prodotti in vendita dallo stesso negozio </h1>
+  <div class="row">
+    <% @products.each do |product| %>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+      <%= render 'products/product', product: product %>
+    </div>
+    <% end %>
+  </div>
+    <%= link_to  store_path(@product.store), class: "prev-page-link" do %>
+    <%= image_tag 'back-icon.svg' %> Torna alla pagina del negozio
+  <% end %>
+</div>

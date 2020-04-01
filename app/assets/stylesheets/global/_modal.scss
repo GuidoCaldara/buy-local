@@ -2,7 +2,7 @@
   background: #00000094;
   width: 100%;
   position: fixed;
-  z-index: 2;
+  z-index: 999;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -16,6 +16,9 @@
   position: relative;
   padding: 30px;
   width: 30%;
+  &.login{
+    width: 45%
+  }
   .close-app-modal {
     position: absolute;
     top: 16px;
@@ -36,6 +39,10 @@
 @media screen and (max-width: 768px) {
   .app-modal-container {
     width: 30%;
+  &.login{
+    width: 60%
+  }
+
   }
 }
 

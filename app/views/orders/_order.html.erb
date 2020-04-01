@@ -1,29 +1,32 @@
-    <div class="order-summary-card my-3">
-      <div class="order-summary-card__header">
-        <div class="">
-          <p>Ordine:</p>
-          <h3><%= order.number %></h3>
-        </div>
-        <div class="">
-          <p>Stato:</p>
-          <h3><%= order_status(order)  %></h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <p>Negozio:</p>
-          <h3><%= order.store.name  %></h3>
-        </div>
-        <div class="col-md-3">
-          <p>IMPORTO TOTALE:</p>
-          <h3><%= order.amount  %>€</h3>
-        </div>
-        <div class="col-md-3">
-          <p>DATA:</p>
-          <h3><%= order.created_at.strftime("%d/%m/%Y")  %></h3>
-        </div>
-        <div class="col-md-3">
-          <%= link_to "Dettagli Ordine", order, class:"btn btn-primary" %>
-        </div>
-      </div>
+<div class="order-summary-card">
+  <h1 class="card-subtitle mb-2">Dettagli dell'ordine</h1>
+  <div class="order-summary-card__header">
+    <div class="">
+      <p>Ordine:</p>
+      <h3><%= order.number %></h3>
     </div>
+    <div class="">
+      <p>Stato:</p>
+      <h3><%= order_status(order)  %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <p>Negozio:</p>
+      <h3><%= order.store.name  %></h3>
+    </div>
+    <div class="col-md-3">
+      <p>IMPORTO TOTALE:</p>
+      <h3><%= order.amount  %>€</h3>
+    </div>
+    <div class="col-md-3">
+      <p>DATA:</p>
+      <h3><%= order.created_at.strftime("%d/%m/%Y")  %></h3>
+    </div>
+    <div class="col-md-3">
+      <% if show_link %>
+        <%= link_to "Dettagli Ordine", order, class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

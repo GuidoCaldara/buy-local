@@ -14,8 +14,8 @@
   <div class="navbar-top__links">
     <% if user_signed_in? %>
     <% else %>
-    <%= link_to "Accedi", new_user_session_path %>
-    <%= link_to "Registrati", new_user_registration_path %>
+    <%= link_to "Accedi", new_access_modal_users_path, remote: true %>
+    <%= link_to "Registrati", new_access_modal_users_path, remote: true %>
     <% end %>
   </div>
   <% if user_signed_in? %>
@@ -42,7 +42,7 @@
   <div class="navbar-link-menu hidden">
     <div class="content">
       <div class="link">
-        <%= link_to "Il tuo Profilo", destroy_user_session_path, method: :delete %>
+        <%= link_to "Il tuo Profilo", user_dashboard_path %>
         <%= image_tag 'person.svg' %>
       </div>
       <div class="link">
