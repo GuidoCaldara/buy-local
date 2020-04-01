@@ -29,10 +29,10 @@
       <div>
         <% if product.on_sale? %>
           <span class="product-card__footer__price__integer"><%= integer_discounted_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_discounted_price(product) %>€</span>
-          <del><%= product.price %>€</del> /<span> <%= product.sold_by %></span>
+          <del><%= product.price %>€</del> /<span> <%= package_type(product) %></span>
       <% else %>
         <span class="product-card__footer__price__integer"><%= integer_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_price(product) %>€ /</span>
-        <span class="product-card__footer__sold-by"> <%= product.sold_by %></span>
+        <span class="product-card__footer__sold-by"> <%= package_type(product) %></span>
         <% end %>
       </div>
 

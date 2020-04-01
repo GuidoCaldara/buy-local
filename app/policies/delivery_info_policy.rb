@@ -14,6 +14,7 @@ class DeliveryInfoPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user && record.order.status == 'pending'
+    false
+    #record.user == user && record.order.status == 'pending'
   end
 end

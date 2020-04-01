@@ -1,6 +1,6 @@
 <div class="container pt-3 pb-5">
 <%= link_to new_order_payment_path(@delivery_info.order), class: "prev-page-link" do %>
-  <%= image_tag 'back-icon.svg' %>
+  <%= image_tag 'back-icon.svg' %> Torna alla pagina del pagamento
 <% end %>
   <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <%= render 'orders/order', order: @delivery_info.order, show_link: false %>

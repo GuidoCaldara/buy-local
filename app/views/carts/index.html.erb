@@ -1,5 +1,8 @@
 <div class="container pt-3">
-  <%= link_to "< Torna alla lista negozi", stores_path, class: "prev-page-link" %>
+  <%= link_to stores_path, class: "prev-page-link" do %>
+    <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
+  <% end %>
+
   <div class="row">
       <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <% if @carts.empty? %>

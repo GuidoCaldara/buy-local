@@ -40,6 +40,7 @@ module ApplicationHelper
     "#{store.street} #{store.street_number}, #{store.city}"
   end
 
+
   def order_status(order)
     case order.status
     when "pending"

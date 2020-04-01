@@ -22,6 +22,6 @@ document.addEventListener('turbolinks:load', () => {
   initCardCarousel()
   initOrderAddressPlaceAutocomplete()
   searchPlaceAutocomplete()
-  initNavbarDropdown()
+  //initNavbarDropdown()
   initCategoryFilterForm()
 })

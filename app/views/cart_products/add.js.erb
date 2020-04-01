@@ -3,3 +3,10 @@ document.querySelector('[data-id="price-<%= @cart_product.id%>"]').innerText = "
 document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= prettify_price(@cart_product.cart.total_price) %>€"
 document.querySelector('.total-price-in-basket').innerText = "<%= total_price_in_cart(current_user) %>"
 document.querySelector('.total_products_in_cart').innerText = "<%= product_in_cart(current_user) %>"
+var unitType = document.querySelector(".unit-type")
+var unitTypeString = unitType.innerText
+if (parseInt("<%= @cart_product.quantity %>") == 1){
+  unitType.innerText = "<%= package_type(@cart_product.product) %>"
+} else {
+  unitType.innerText = unitTypeString.substr(0, unitTypeString.length-1) + "i";
+}

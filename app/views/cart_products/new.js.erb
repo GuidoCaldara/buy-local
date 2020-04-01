@@ -5,6 +5,13 @@ function updateDom(newAmount){
   const prevPrice = parseFloat(price.dataset.price)
   const newPrice = newAmount * prevPrice
   document.querySelector(".amount").innerText = newAmount
+  const unitType = document.querySelector(".unit-type")
+  const unitTypeString = unitType.innerText
+  if (newAmount == 1){
+    unitType.innerText = "<%= package_type(@product) %>"
+  } else {
+    unitType.innerText = unitTypeString.substr(0, unitTypeString.length-1) + "i";
+  }
   price.innerText = newPrice.toFixed(2)
   amountInput.value= newAmount
   totalPriceInput.value = newPrice.toFixed(2)

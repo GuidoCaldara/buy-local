@@ -1,13 +1,29 @@
 .home-banner{
-  height: 70vh;
-  background: red;
+  height: 80vh;
   display:flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &__content{
+    width: 70%;
+    h1{
+      color: #e4e4e4;
+      margin-bottom: 0px;
+      font-size: 65px;
+      font-weight: 400;
+    }
+    h3{
+      color: #e4e4e4;
+      font-size: 28px;
+      font-weight: 100;
+      margin-bottom: 24px;
+    }
+  }
 }
 
 #home-banner-search-form{
-  width: 70%;
   .btn-primary{
     width: 40%;
     margin: 0 auto;

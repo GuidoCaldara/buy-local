@@ -8,7 +8,7 @@
   </div>
   <div class="new-cart-product-form__body">
    <h3><%= product.name %></h3>
-   <p><%= current_price(product) %>€ / <%= product.sold_by %></p>
+   <p><%= current_price(product) %>€ / <%= package_type(product) %></p>
     <p class="new-cart-product-form__body__amount_header">Quantità:</p>
     <div class="new-cart-product-form__body__amount_body">
     <div>
@@ -16,7 +16,7 @@
        <span class="amount">1</span>
       <%= image_tag 'add-btn.svg', class:"add amount-btn" %>
           </div>
-      <p class="unit-type"><%= product.sold_by  %></p>
+      <p class="unit-type"><%= package_type(product)  %></p>
    </div>
     <div class="total-price-box">
       <h3>Totale:</h3>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_051049) do
+ActiveRecord::Schema.define(version: 2020_04_01_124518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,12 @@ ActiveRecord::Schema.define(version: 2020_03_29_051049) do
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
+  create_table "packages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -119,7 +125,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_051049) do
     t.boolean "available", default: true
     t.integer "discounted_price_cents", default: 0, null: false
     t.integer "pack_weight"
+    t.bigint "package_id", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["package_id"], name: "index_products_on_package_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -161,6 +169,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_051049) do
   add_foreign_key "delivery_infos", "orders"
   add_foreign_key "orders", "carts"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "packages"
   add_foreign_key "products", "stores"
   add_foreign_key "stores", "merchants"
 end

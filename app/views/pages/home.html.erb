@@ -1,6 +1,11 @@
-<div class="home-banner">
-  <form id="home-banner-search-form" action="/stores" method="GET">
-      <input type="text" name="query" class="form-control" placeholder="Cerca un paese..." id="banner-search-form-input" value="<%= session[:place_query] %>"autocomplete="off">
-      <button type="submit" class="btn btn-primary">Cerca</button>
-  </form>
+<div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<%= image_path 'banner.jpg' %>')">
+  <div class="home-banner__content">
+    <h1>BuyLocal</h1>
+    <h3>Dai produttori della tua zona a casa tua</h3>
+    <form id="home-banner-search-form" action="/stores" method="GET">
+        <input type="text" name="query" class="form-control" placeholder="Cerca un paese..." id="banner-search-form-input" value="<%= session[:place_query] %>"autocomplete="off">
+        <button type="submit" class="btn btn-primary">Cerca</button>
+    </form>
+
+  </div>
 </div>

@@ -1,11 +1,14 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-sidebar">
-
   </div>
+
   <div class="container py-3">
+    <%= link_to stores_path, class: "prev-page-link" do %>
+      <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
+    <% end %>
+
     <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
       <h1 class="card-title">I tuoi ordini</h1 class="card-title">
-
         <% @orders.each do |order| %>
         <%= render 'orders/order', order: order, show_link: true %>
         <% end %>

@@ -15,6 +15,8 @@
     <h3>Quantità:</h3>
     <div>
       <span data-id="quantity-<%=cart_product.id%>" class="quantity-ordered"><%= cart_product.quantity %></span>
+      <p class="unit-type"><%= package_type(cart_product.product, cart_product.quantity) %></p>
+
     </div>
   </div>
     <div class="col-md-3 col-5 cart-product-card__price">
