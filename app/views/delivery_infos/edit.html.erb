@@ -3,7 +3,7 @@
   <%= image_tag 'back-icon.svg' %>
 <% end %>
   <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
-    <%= render 'orders/order', order: @delivery_info.order %>
+    <%= render 'orders/order', order: @delivery_info.order, show_link: false %>
     <h1 class="card-title new-delivery-info-form-title">Inserisci le informazioni per la consegna</h1>
     <%= simple_form_for [@order, @delivery_info] do |f| %>
     <div class="row">
