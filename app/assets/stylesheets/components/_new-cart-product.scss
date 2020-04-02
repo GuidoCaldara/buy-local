@@ -1,11 +1,12 @@
 .new-cart-product-form{
   &__img{
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
     img{
-      width:100%;
+      width: 100%;
       margin: 0 auto;
-      object-fit:cover;
+      object-fit: cover;
+      height: 130px;
     }
   }
   &__body{

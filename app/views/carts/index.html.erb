@@ -6,10 +6,7 @@
   <div class="row">
       <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <% if @carts.empty? %>
-    <div class="empty-card-wrapper">
-      <h1 class="card-title">Non hai prodotti nel carrello</h1>
-      <h3 class="card-subtitle">Sfoglia tra i negozi e scohpri le delizie locali!</h3>
-    </div>
+      <%= render 'no-products-cart' %>
     <% else %>
      <h1 class="card-title">I prodotti nel tuo carrello</h1>
       <% @carts.each do |cart| %>

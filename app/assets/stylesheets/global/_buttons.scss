@@ -4,13 +4,15 @@
 }
 
 .btn-primary{
-  width: 100%;
   color: white !important;
   border: none !important;
   box-shadow: none !important;
   &:hover{
     color: white !important;
     background: #ffdc71
+  }
+  &.max-width{
+    width: 100%
   }
 }
 

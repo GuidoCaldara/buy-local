@@ -41,15 +41,4 @@ module ApplicationHelper
     "#{store.street} #{store.street_number}, #{store.city}"
   end
 
-
-  def order_status(order)
-    case order.status
-    when "pending"
-      return "In attesa di Pagamento"
-    when "paied"
-      return "Pagato. In consegna"
-    when "completed"
-      return "consegnato"
-    end
-  end
 end

@@ -1,11 +1,13 @@
 module OrdersHelper
 
-  def current_status(status)
-    case status
+  def current_status(order)
+    case order.status
     when 'pending'
       return "In attesa di Pagamento"
-    when 'paied'
+    when 'paid'
       return "Pagato"
+    when 'on delivery'
+      return "In Consegna"
     when 'declined'
       return "Pagamento rifiutato"
     end

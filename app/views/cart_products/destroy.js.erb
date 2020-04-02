@@ -10,5 +10,5 @@ document.querySelector('.total_products_in_cart').innerText = "<%= product_in_ca
 <% end %>
 
 <% if current_user.active_carts.empty? %>
-  document.querySelector('.card-wrapper').remove()
+  document.querySelector('.card-wrapper').innerHTML = "<%= j render 'carts/no-products-cart' %>"
 <% end %>
