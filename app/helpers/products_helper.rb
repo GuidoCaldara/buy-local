@@ -18,7 +18,7 @@ module ProductsHelper
       word = "Confezione"
     when "jar"
       word = "Barattolo"
-    when "Kg"
+    when "kg"
       word = "Kilo"
     when "hg"
       word = "Etto"

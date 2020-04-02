@@ -5,6 +5,10 @@ document.querySelector('.total_products_in_cart').innerText = "<%= product_in_ca
 <% if @cart_product.cart.cart_products.any? %>
   document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= prettify_price(@cart_product.cart.total_price) %>€"
 <% end %>
+<% if @cart_product.cart.cart_products.empty? %>
+  document.querySelector('[data-cart-id="<%= @cart_product.cart.id%>"]').remove()
+<% end %>
+
 <% if current_user.active_carts.empty? %>
   document.querySelector('.card-wrapper').remove()
 <% end %>

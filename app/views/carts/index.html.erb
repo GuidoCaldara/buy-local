@@ -6,11 +6,14 @@
   <div class="row">
       <div class="card-wrapper py-4 px-4" style="min-height: 50vh">
     <% if @carts.empty? %>
-       <h1 class="card-title">Non hai prodotti nel carrello</h1>
-      <h3>Sfoglia tra i negozi e scohpri le delizie locali!</h3>
+    <div class="empty-card-wrapper">
+      <h1 class="card-title">Non hai prodotti nel carrello</h1>
+      <h3 class="card-subtitle">Sfoglia tra i negozi e scohpri le delizie locali!</h3>
+    </div>
     <% else %>
      <h1 class="card-title">I prodotti nel tuo carrello</h1>
       <% @carts.each do |cart| %>
+      <div data-cart-id="<%= cart.id %>">
       <div class="cart-header">
         <h3 class="card-subtitle"><%= cart.store.name %></h3>
         <p><%= short_address(cart.store) %></p>
@@ -36,10 +39,10 @@
               <% if policy(Order.new(cart: cart)).create? %>
                 <%= link_to "Completa l'acquisto", cart_orders_path(cart), method: :post, class: 'btn btn-primary' %>
               <% end %>
-                <%= link_to "Cancella l'ordine", cart_path(cart), method: :delete, class: 'btn btn-secondary mt-1' %>
+                <%= link_to "Cancella il carrello", cart_path(cart), method: :delete, class: 'btn btn-secondary mt-1' %>
             </div>
           </div>
-
+        </div>
       <% end %>
     <% end %>
   </div>

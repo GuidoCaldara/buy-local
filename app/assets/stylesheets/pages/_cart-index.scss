@@ -17,9 +17,9 @@
 }
 
 .cart-total-price-card{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
   h3{
     flex: 1;
@@ -33,5 +33,15 @@
     font-size: 18px;
     font-weight: 100;
   }
+}
 
+.empty-card-wrapper{
+  text-align: center;
+  h1{
+    margin-bottom: 8px;
+  }
+  h3{
+    color: gray;
+
+  }
 }

@@ -32,6 +32,7 @@ module ApplicationHelper
 
   def prettify_price(price_cents)
     price = (price_cents).to_s
+    return "0.00" if price == "0"
     price.insert(-3, ".")
     return price
   end

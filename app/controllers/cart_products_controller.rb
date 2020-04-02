@@ -26,8 +26,10 @@ class CartProductsController < ApplicationController
   def remove
     @cart_product = CartProduct.find(params[:id])
     authorize @cart_product
-    @cart_product.quantity -= 1 if @cart_product.quantity > 0
-    @cart_product.save
+    if @cart_product.quantity > 0
+      @cart_product.quantity -= 1
+      @cart_product.save
+    end
   end
 
   def destroy
