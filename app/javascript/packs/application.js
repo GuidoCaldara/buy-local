@@ -18,6 +18,7 @@ global.initFormDropDown = initFormDropDown
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initFormAutocomplete()
   initFormDropDown()
   initCardCarousel()
   initOrderAddressPlaceAutocomplete()

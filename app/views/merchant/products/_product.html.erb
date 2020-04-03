@@ -34,7 +34,7 @@
   </div>
   <div class="merchant-product-card-links">
     <%= link_to edit_merchant_product_path(product), remote: true do %>
-    <i class="far fa-edit"></i>
+      <i class="far fa-edit"></i>
     <% end %>
     <%= link_to merchant_product_path(product), method: :delete, data:{confirm: "Sei sicuro di voler rimuovere #{product.name}?"}, remote: true do %>
     <i class="fas fa-trash-alt"></i>

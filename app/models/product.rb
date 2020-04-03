@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   monetize :discounted_price_cents
   has_one_attached :photo
   belongs_to :store
+  has_one :merchant, through: :store
   belongs_to :package
   belongs_to :category
   pg_search_scope :product_search,

@@ -14,8 +14,15 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.referer
+    if resource == User
+      request.referer
+    else
+      merchant_dashboard_path
+    end
   end
 
+  def pundit_user
+    current_merchant || current_user
+  end
 
 end
