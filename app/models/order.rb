@@ -1,5 +1,12 @@
 class Order < ApplicationRecord
-  monetize :amount_cents
+
+  STATUSES = { 'pending' => 'Order placed',
+               'paid' => 'A change has been made to the order',
+               'delivered' => 'The order has been shipped',
+               'completed' => 'The order has been archived' }
+  monetize :cart_amount_cents
+  monetize :delivery_fee_cents
+  monetize :total_amount_cents
   belongs_to :cart
   has_many :cart_products, through: :cart
   has_one :user, through: :cart
@@ -7,11 +14,26 @@ class Order < ApplicationRecord
   has_one :merchant, through: :store
   has_one :delivery_info, dependent: :destroy
   before_create :generate_order_number
-  #after_create :mark_cart_as_complete
+  before_save :calculate_amounts
   before_validation :set_total_price
 
   def set_total_price
-    self.amount_cents = self.cart.total_price
+    self.cart_amount_cents = self.cart.total_price
+  end
+
+  def calculate_amounts
+    cart_price = self.cart.total_price
+    store = self.store
+    free_delivery_threshold_cents = store.free_delivery_threshold_cents
+    self.cart_amount_cents = cart_price
+    if (free_delivery_threshold_cents != 0)
+      if (cart_price >= free_delivery_threshold_cents)
+        self.delivery_fee_cents = 0
+      else
+        self.delivery_fee_cents = store.delivery_fee_cents
+      end
+    end
+    self.total_amount_cents = self.cart_amount_cents + self.delivery_fee_cents
   end
 
 

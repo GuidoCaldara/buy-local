@@ -15,8 +15,8 @@
   <%= f.input :description, label: "Descrizione Del Prodotto" %>
   <div class="new-product-form-flex-container">
     <%= f.input :price, label: "Prezzo in €" %>
-    <%= f.input :sold_by, label: "Venduto per", collection: ["Confezione", "Kilo", "100g"] %>
-    <%= f.input :pack_weight, label: "Contenuto Confezione in Grammi", wrapper_html: {class:"#{product.sold_by == "Confezione" ? '' : 'hidden'}"} %>
+    <%= f.association :package, label: "Venduto per", label_method: :select_label %>
+    <%= f.input :pack_weight, label: "Contenuto Confezione in Grammi", wrapper_html: {class:"#{[1,2,].include?(product.package_id) ? '' : 'hidden'}"} %>
   </div>
   <% if product.id %>
     <%= f.input :discounted_price, label: "Vuoi scontare il prodotto? Inserisci il prezzo scontato (Lascia 0.00 se non applichi sconti)" %>

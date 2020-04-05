@@ -35,6 +35,6 @@ class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     authorize @store
-    @products = @store.products
+    @products = @store.available_products
   end
 end

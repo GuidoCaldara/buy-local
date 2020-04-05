@@ -9,7 +9,7 @@ class CartProduct < ApplicationRecord
 
   def re_calculate_total_price
     if !self.order.nil?
-      self.order.update(amount_cents: CartProduct.where(cart_id: self.cart).pluck(:price_cents).reduce(:+))
+      self.order.update(cart_amount_cents: CartProduct.where(cart_id: self.cart).pluck(:price_cents).reduce(:+))
     end
   end
 

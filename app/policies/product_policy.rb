@@ -1,8 +1,7 @@
 class ProductPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      byebug
-      scope.where(merchant: merchant)
+      scope.where(store: user.store)
     end
   end
 
@@ -10,15 +9,20 @@ class ProductPolicy < ApplicationPolicy
     user.class == Merchant
   end
 
+
+  def show?
+    true
+  end
+
+  def merchant_show?
+    record.merchant == user
+  end
+
   def create?
     user.class == Merchant
   end
 
   def update?
-   record.merchant == user
-  end
-
-  def show?
-    return true if user.class == User
+    record.merchant == user
   end
 end

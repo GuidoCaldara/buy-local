@@ -12,4 +12,12 @@ class StorePolicy < ApplicationPolicy
   def filter_categories?
     true
   end
+
+  def update?
+    record == user.store
+  end
+
+  def merchant_show?
+    record == user.store
+  end
 end

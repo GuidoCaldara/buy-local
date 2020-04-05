@@ -1,7 +1,12 @@
-.dashboard-header {
-  height: 50px;
-  background-color: #272B31;
-  color: white;
+.merchants-products-container{
+  &__form{
+
+  }
+}
+
+.merchant-dashboard-header {
+  height: 60px;
+  background-color: $yellow;
   padding: 0px 10px;
   padding-top: 4px;
   display: flex;
@@ -19,9 +24,10 @@
   }
 }
 
-.dashboard-container {
+.merchant-dashboard-container {
+  background: white;
   display: flex;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   .dashboard-container-main-window {
     flex: 1;
     position: relative;
@@ -60,6 +66,8 @@
 }
 
 .product-list-container{
-  padding: 0px 8px;
+    max-height: calc(100vh - 190px);
+    overflow-y: scroll;
+    padding: 0px 8px;
     flex: 1;
 }

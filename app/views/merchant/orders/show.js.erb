@@ -1,0 +1,3 @@
+document.querySelector('body').insertAdjacentHTML('afterbegin', "<%= j render 'merchant/products/merchant-dashboard-modal' %>")
+document.querySelector('.store-dashboard-modal-body').innerHTML = '<%= j render "show", order: @order %>'
+closeModal()

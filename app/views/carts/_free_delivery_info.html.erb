@@ -1,0 +1,7 @@
+<% if store_offer_free_delivery_up_to_a_certain_amount?(cart.store) %>
+ <% if reach_free_delivery?(cart) %>
+    Hai raggiunto l'importo minimo per avere la consegna gratuita!
+ <% else %>
+    <small>Ti mancano <%= humanized_money_with_symbol(amount_to_free_delivery(cart)) %> per raggiungere la soglia di consegna gratuita</small>
+ <% end %>
+<% end %>

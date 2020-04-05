@@ -1,0 +1,12 @@
+
+<h3 class="mb-4">Aggiorna Le informazioni del negozio</h3>
+<%= simple_form_for store, url: merchant_store_path(store), method: :patch, remote: true do |f| %>
+  <%= f.input :name, label:"Nome" %>
+  <%= f.input :description, label: "Descrizione" %>
+  <%= f.input :phone_number, label: "Numero di telefono" %>
+  <%= f.input :street, label: "Via" %>
+  <%= f.input :street_number, label: "Numero Civico" %>
+  <%= f.input :zip_code, label: "CAP" %>
+  <%= f.input :state, label: "Provincia" %>
+  <%= f.button :submit, "Aggiorna", class:"btn btn-primary" %>
+<% end %>

@@ -3,7 +3,7 @@
     <h3>Filtra negozi in base ai prodotti</h3>
     <% @categories.each do |category| %>
       <label class="category-filter-label" for="<%= category.id %>"><%= category.name %></label>
-      <input hidden type="checkbox" name="categories[]" id="<%= category.id %>" value="<%= category.id %>">
+      <input hidden class="store-category-checkbox" type="checkbox" name="categories[]" id="<%= category.id %>" value="<%= category.id %>">
     <% end %>
   </form>
 </div>

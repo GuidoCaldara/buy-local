@@ -1,0 +1,101 @@
+  <div class="container card-wrapper p-5 my-5">
+  <%= link_to stores_path, class: "prev-page-link mb-4" do %>
+  <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
+  <% end %>
+  <div class="row">
+    <div class="col">
+    <h1 class="card-title">Riepilogo dell'ordine</h1>
+    <div class="cart-title-wrapper">
+      <% if order.delivery_info %>
+        <div class="mb-4">
+          <h3 class="card-subtitle">Indirizzo di spedizione</h3>
+          <p class="card-subtitle-small"><%= order.delivery_info.first_name %> <%= order.delivery_info.last_name %></p>
+          <p class="card-subtitle-small"><%= order.delivery_info.street %>, <%=  order.delivery_info.city %></p>
+          <p class="card-subtitle-small"><%= order.delivery_info.zip_code %>, <%=  order.delivery_info.state %></p>
+          <p  class="card-subtitle-small">+39<%=  order.delivery_info.phone_number %> / <%=  order.delivery_info.email %></p>
+        </div>
+        <div class="order-status-box">
+          <h3 class="card-subtitle">Stato dell'ordine:</h3>
+          <p class="card-subtitle-small"><%= current_status(order) %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="cart-header">
+      <h3 class="card-subtitle"><%= order.store.name %></h3>
+      <p><%= short_address(order.store) %></p>
+    </div>
+    <% order.cart_products.each do |cart_product| %>
+      <%= render 'orders/order_product', cart_product: cart_product %>
+    <% end %>
+          <div class="row pt-3">
+            <div class="col-md-7 cart-delivery-infos">
+              <%= image_tag 'delivery-truck.svg' %>
+              <div>
+                <h3 class="card-subtitle">Acquista ora e riceverai l'ordine entro:</h3>
+                <p><%= stringify_delivery_day(order.cart) %></p>
+              </div>
+            </div>
+            <div class="col-md-4  cart-total-price-card">
+              <h3 class="cart-total-price-text">Totale Carrello: </h3>
+              <span class="cart-total-price"><%= humanized_money_with_symbol(order.cart_amount) %></span> <br/>
+              <div>
+              </div>
+            </div>
+          </div>
+    <div class="row py-2">
+      <div class="col-md-4 offset-md-7 ">
+        <div class="cart-total-price-card">
+          <h3 class="cart-total-price-text">Spese di consegna: </h3>
+          <span class="cart-total-price">
+            <%= humanized_money_with_symbol(order.delivery_fee) %>
+          </span>
+          <br/>
+        </div>
+      </div>
+    </div>
+    <div class="row py-2 mb-5">
+      <div class="col-md-4 offset-md-7 cart-total-price-card">
+        <h3 class="cart-total-price-text">Totale Ordine: </h3>
+        <span class="cart-total-price">
+          <%= humanized_money_with_symbol(order.total_amount)%>
+        </span>
+        <br/>
+        <div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 total-price-row">
+        <% if policy(order).edit? %>
+          <%= link_to "Modifica l'ordine", edit_order_path(order), class: 'btn btn-primary max-width' %>
+          <%= link_to "Cancella l'ordine", order_path(order), method: :delete, class: 'btn btn-secondary mt-2 max-width' %>
+        <% end %>
+      </div>
+      <div class="col-md-4 offset-md-4 total-price-row">
+        <% if policy(DeliveryInfo.new(order: order)).new? %>
+        <%= link_to "Conferma", new_order_delivery_info_path(order), class: 'btn btn-primary max-width' %>
+        <% end %>
+        <% if policy(order).can_be_payed? %>
+          <% if controller_name == 'payments' %>
+            <button id="pay" class="w-100 btn btn-primary">Paga Ora</button>
+              <script src="https://js.stripe.com/v3/"></script>
+              <script>
+                const paymentButton = document.getElementById('pay');
+                paymentButton.addEventListener('click', () => {
+                  const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+                  stripe.redirectToCheckout({
+                    sessionId: '<%= order.checkout_session_id %>'
+                  });
+                });
+              </script>
+          <% else %>
+            <%= link_to "Paga l'ordine", new_order_payment_path(order), class: 'btn btn-primary max-width' %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+function changeStoreInfo(storeShow){
+  const container = document.querySelector(".dashboard-container-main-window")
+  container.innerHTML = storeShow
+}
+
+function dislpayErrors(form){
+  const formContainer = document.querySelector('.store-dashboard-modal-body')
+  formContainer.innerHTML = form
+}
+
+<% if @store.errors.any? %>
+  dislpayErrors("<%= j render 'merchant/stores/form', store: @store %>")
+<% else %>
+  removeModal()
+  changeStoreInfo("<%= j render 'merchant/stores/show', store: @store %>")
+<% end%>

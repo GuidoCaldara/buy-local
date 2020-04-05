@@ -11,13 +11,14 @@
 }
 
 .store-dashboard-modal-container {
-
-  background: #f8f9fa;
-  position: relative;
-  padding: 50px;
-  height: 100%;
-  width: 80%;
-  overflow-y: scroll;  i {
+    background: #f8f9fa;
+    position: relative;
+    padding: 50px;
+    height: 100%;
+    width: 80%;
+    overflow-y: scroll;
+    border-radius: 10px;
+  i {
     position: absolute;
     top: 16px;
     right: 16px;

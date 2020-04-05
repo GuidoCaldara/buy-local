@@ -1,7 +1,7 @@
 import Rails from "@rails/ujs";
 
 const initCategoryFilterForm = () => {
-  const checkBoxes = document.querySelectorAll('.stores-form-filter form input')
+  const checkBoxes = document.querySelectorAll('.store-category-checkbox')
   const form = document.querySelector('#stores-category-filter')
   if (checkBoxes.length > 0 ){
     checkBoxes.forEach((checkbox)=> {

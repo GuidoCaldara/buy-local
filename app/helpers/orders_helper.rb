@@ -1,5 +1,9 @@
 module OrdersHelper
 
+  def full_address(order)
+    [order.street, order.zip_code, order.city, order.state].compact.join(', ')
+  end
+
   def current_status(order)
     case order.status
     when 'pending'

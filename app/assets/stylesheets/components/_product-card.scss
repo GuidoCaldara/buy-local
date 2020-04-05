@@ -1,12 +1,21 @@
 .product-card{
+  &__sale-icon{
+    width: 48px;
+    height: auto;
+    position: absolute;
+    right: 6px;
+    top: 8px
+  }
   border-radius: 8px;
   border: none;
   position: relative;
-  min-height: 385px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.07);
+
   .cart-img{
-    // width: 32px;
     position: absolute;
     color: $red;
     right: 14px;
@@ -17,25 +26,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: 20px;
+    bottom: 16px;
     padding-right: 1px;
     img{
       width: 23px;
       height: auto
+    }
   }
-}
-  img{
+  a{
+    flex: 1
+  }
+  &__product-image{
     width:100%;
     height: 150px;
     object-fit: cover;
   }
   &__body{
-
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 14px 0px;
-    padding-bottom: 0px;
     small{
       font-size: $p-small-size;
       color:#9c9c9c
@@ -44,13 +53,14 @@
       font-size: $h3-medium-size;
       // font-weight: 100
     }
-    p{
-      font-weight: 100;
-      font-size: $p-medium-size;
-      color: $light-gray-light-bk
-    }
     &__info{
-      flex:1
+      flex:1;
+      padding: 10px 0px;
+      &__description{
+        font-weight: 100;
+        font-size: $p-medium-size;
+        color: $light-gray-light-bk
+      }
     }
   }
 
@@ -58,20 +68,30 @@
     &__sold-by{
       font-size: 14px;
       font-weight: 100;
+      margin-top: -8px;
       color: $light-gray-light-bk;
     }
     &__price{
-      &__integer{
-        font-size:$h3-big-size;
-        font-weight: 400
+      p{
+        margin-bottom: 0px
       }
-      &__decimal{
-        font-size: 16px
-      }
-      del{
+      &__old-price{
         color: $light-gray-light-bk;
         font-size:14px;
-        font-weight:100
+        font-weight:100;
+        margin-bottom: -6px
+
+      }
+      &__amount{
+        display: flex;
+        align-items: baseline;
+        &__integer{
+          font-size:$h3-big-size;
+          font-weight: 400
+        }
+        &__decimal{
+          font-size: 16px
+        }
       }
     }
   }

@@ -1,10 +1,56 @@
-<div class="products-container">
-  <%= render 'merchant/products/search_product_form', categories: categories %>
-  <%= render 'merchant/products/products_list_header', categories: categories %>
-  <div class="product-list-container">
-    <% products.each do |product| %>
-      <%= render 'merchant/products/product', product: product %>
-    <% end %>
-  </div>
+<div style="overflow-x:auto; height: 100%">
+  <form action="/merchant/products" method="get" class="" data-remote="true" id="merchant-product-filter-form">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <td colspan="1" scope="col">Cerca</td>
+          <td scope="col">
+            <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filtra
+            </button>
+            <div class="dropdown-menu p-2">
+              <% categories.each do |category| %>
+                <div class="form-check">
+                  <input class="form-check-input category-form-input" id="<%= category.name %>" type="checkbox" name="categories[]" value="<%= category.id %>">
+                  <label class="form-check-label" for="<%= category.name %>"><%= category.name %></label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          </td>
+          <td colspan="2" scope="col">
+            <input autocomplete="off" id="merchant-product-form-query" type="text" name="query" class="form-control-sm form-control" placeholder="Cerca un prodotto">
+          </td>
+          <td colspan="3" scope="col"></td>
+          <td scope="col">
+            <%= link_to new_merchant_product_path, class:"btn btn-sm btn-primary", remote: true do %>
+              <i class="fas fa-plus mr-2"></i>Aggiungi un prodotto
+            <% end %>
+          </td>
+        </tr>
+
+      </thead>
+    </table>
+  </form>
+  <table class="table overflow-auto">
+    <thead>
+      <tr>
+        <th scope="col">Codice</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Sconto</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Disponibile</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="product-list-container">
+      <% @products.each do |product| %>
+        <%= render 'product', product: product %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 

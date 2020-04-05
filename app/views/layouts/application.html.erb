@@ -3,15 +3,21 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
     <title>TODO</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <% if current_merchant || request.url.match("merchants")%>
+      <%= stylesheet_link_tag 'merchants_style', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'merchants-app', 'data-turbolinks-track': 'reload', defer: true %>
+    <% else %>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <% end %>
   </head>
-  <body>
-      <% unless current_merchant || action_name == "home"%>
+  <body class="<%= 'merchant-dashboard-body' if current_merchant %>">
+    <% unless current_merchant || action_name == "home"%>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>

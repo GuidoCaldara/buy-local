@@ -1,14 +1,49 @@
-<div class="container pt-3">
-  <%= link_to stores_path, class: "prev-page-link" do %>
-    <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
-  <% end %>
+  <div class="container card-wrapper p-5 my-5">
+    <%= link_to stores_path, class: "prev-page-link mb-4" do %>
+      <%= image_tag 'back-icon.svg' %> Torna alla lista negozi
+    <% end %>
+    <div class="row">
+      <div class="col-md-4 p-0">
+          <div class="store-card__img shop-page">
+      <% if @store.store_pictures.empty? %>
+          <%= image_tag 'no-picture-product.png' %>
+      <% else %>
+      <i class="carousel-card-arrow fas fa-chevron-left" data-id="<%= @store.id %>"></i>
+        <% @store.store_pictures.each_with_index do |photo, i| %>
+          <%= cl_image_tag photo.picture.key, height: 300, width: 400, crop: :fill,class:"w-100 img-fluid #{'active' if i.zero?}", data: {image_store: @store.id} %>
+        <% end %>
+      <i class="fas fa-chevron-right" data-id="<%= @store.id %>"></i>
+      <% end %>
+    </div>
+      </div>
+      <div class="col-md-8 p-0">
+        <div class="store-card__body">
+          <div class="store-card__body__title">
+            <div class="store-card__body__categories">
+              <% @store.categories_name.each do |c| %>
+              <span class=""><%= c %></span>
+              <% end %>
+            </div>
+            <h1><%= @store.name %></h1>
+            <p><%= short_address(@store) %></p>
+          </div>
+          <div class="store-card__body__description show">
+            <p><%= @store.description %></p>
+          </div>
+          <div class="store-card__body__delivery">
+            <% if @store.delivery_time %>
+            <%= image_tag 'delivery-truck.svg' %>
+            <p><%= stringify_delivery_duration(@store) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-  <div class="row">
-    <%= render 'stores/store', store: @store, show: true %>
-  </div>
+    </div>
 </div>
 
-<div class="container py-5">
+
+<div class="container card-wrapper p-5 my-5">
   <h1 class="mb-4 card-title">Prodotti in vendita </h1>
   <div class="row">
     <% @products.each do |product| %>

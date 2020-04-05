@@ -1,0 +1,7 @@
+
+var orderCard = document.querySelector('[data-order-id="<%= @order.id%>"]')
+var paidOrdersNumber = document.querySelector('#order-paid-size')
+var deliveredOrdersNumber = document.querySelector('#order-in-delivery-size')
+paidOrdersNumber.innerHTML= "<%= @order.store.paid_orders.size%>"
+deliveredOrdersNumber.innerHTML= "<%= @order.store.in_delivering_orders.size%>"
+orderCard.remove()

@@ -22,14 +22,6 @@ module ApplicationHelper
     price.to_s.insert(-3,".")
   end
 
-  def current_price(product)
-    if product.discounted_price != 0
-      return product.discounted_price
-    else
-       return product.price
-    end
-  end
-
   def prettify_price(price_cents)
     price = (price_cents).to_s
     return "0.00" if price == "0"

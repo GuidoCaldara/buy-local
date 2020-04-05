@@ -21,6 +21,9 @@ class CartProductsController < ApplicationController
     authorize @cart_product
     @cart_product.quantity += 1
     @cart_product.save
+    respond_to do |format|
+      format.js { render action: 'edit-cart.js.erb'}
+    end
   end
 
   def remove
@@ -29,6 +32,9 @@ class CartProductsController < ApplicationController
     if @cart_product.quantity > 0
       @cart_product.quantity -= 1
       @cart_product.save
+      respond_to do |format|
+        format.js { render action: 'edit-cart.js.erb'}
+      end
     end
   end
 

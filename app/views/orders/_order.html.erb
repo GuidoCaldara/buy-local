@@ -9,6 +9,10 @@
       <p>Stato:</p>
       <h3><%= current_status(order)  %></h3>
     </div>
+    <div class="">
+      <p>Data:</p>
+      <h3><%= order.created_at.strftime("%d/%m/%Y")  %></h3>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-3">
@@ -16,16 +20,19 @@
       <h3><%= order.store.name  %></h3>
     </div>
     <div class="col-md-3">
-      <p>IMPORTO TOTALE:</p>
-      <h3><%= order.amount  %>€</h3>
+      <p>IMPORTO PRODOTTI:</p>
+      <h3><%= humanized_money_with_symbol(order.cart_amount) %></h3>
     </div>
     <div class="col-md-3">
-      <p>DATA:</p>
-      <h3><%= order.created_at.strftime("%d/%m/%Y")  %></h3>
+      <p>IMPORTO CONSEGNA:</p>
+      <h3><%= humanized_money_with_symbol(order.delivery_fee) %></h3>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <% if show_link %>
-        <%= link_to "Dettagli Ordine", order, class:"btn btn-primary" %>
+        <%= link_to "Dettagli Ordine", order, class:"btn btn-secondary mb-3" %>
+      <% end %>
+      <% if show_link && policy(order).can_be_payed? %>
+        <%= link_to "Paga Ora", new_order_payment_path(order), class:"btn btn-primary w-100" %>
       <% end %>
     </div>
   </div>

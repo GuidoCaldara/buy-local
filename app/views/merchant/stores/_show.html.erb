@@ -1,17 +1,22 @@
-<h1><%= store.name %></h1>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mx-auto">
-      <%= simple_form_for store, url: merchant_store_path(store), method: :patch do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
-        <%= f.input :phone_number %>
-        <%= f.input :street %>
-        <%= f.input :zip_code %>
-        <%= f.input :state %>
-      <% end %>
+    <div class="col p-5">
+      <h3 class="mb-3">
+        Informazioni Generali
+        <%= link_to 'Modifica', edit_merchant_store_path(store), remote: true, class: "btn btn-sm btn-primary" %>
+      </h3>
+      <p class="mb-1"><strong>Nome del negozio</strong></p>
+      <p><%= store.name %></p>
+      <p class="mb-1"><strong>Indirizzo</strong></p>
+      <p><%= address_street(store) %></br><%= address_location(store)  %></p>
+      <p class="mb-1"><strong>Numero di telefono</strong></p>
+      <p><%= store.phone_number %></p>
+      <p class="mb-1"><strong>Descrizione Negozio</strong></p>
+      <p><%= store.description %></p>
     </div>
   </div>
 </div>
+
+
 

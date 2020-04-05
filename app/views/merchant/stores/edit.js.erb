@@ -1,0 +1,5 @@
+var body = document.querySelector('body')
+body.insertAdjacentHTML('afterbegin', "<%= j render 'merchant/products/merchant-dashboard-modal' %>")
+var modalBody = document.querySelector('.store-dashboard-modal-body')
+modalBody.innerHTML = '<%= j render "merchant/stores/form", store: @store %>'
+closeModal()

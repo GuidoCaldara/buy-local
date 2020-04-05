@@ -1,5 +1,4 @@
 
 var container = document.querySelector(".dashboard-container-main-window")
 container.innerHTML = "<%= j render 'merchant/products/index', products: @products, categories: @categories %>"
-initFormAutocomplete()
-initFormDropDown()
+initMerchantProductIndexForms()

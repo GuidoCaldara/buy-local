@@ -1,1 +1,19 @@
-<h1>No orders yet</h1>
+<nav class="nav nav-pills nav-justified py-4">
+  <%= link_to filter_orders_store_path(store, :q => "paid"), class:"nav-item nav-link active", remote: true do %>
+    Ordini in Corso (<span id="order-paid-size"> <%= store.paid_orders.size %> </span>)
+  <% end %>
+  <%= link_to filter_orders_store_path(store, :q => "delivered"), class:"nav-item nav-link", remote: true do %>
+    Ordini in consegna (<span id="order-in-delivery-size"><%= store.in_delivering_orders.size %></span>)
+  <% end %>
+  <%= link_to filter_orders_store_path(store, :q => "completed"), class:"nav-item nav-link", remote: true do %>
+    Ordini Completati (<span id="order-completed-size"><%= store.completed_orders.size %></span>)
+
+  <% end %>
+</nav>
+
+
+<div class="container orders-container overflow-auto">
+  <% @orders.each do |order| %>
+    <%= render 'merchant/orders/order', order: order %>
+  <% end %>
+</div>

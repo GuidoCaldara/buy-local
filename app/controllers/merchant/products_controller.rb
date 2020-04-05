@@ -14,13 +14,13 @@ class Merchant::ProductsController < ApplicationController
 
   def merchant_products_list
     authorize Product
-    @products = current_merchant.products
+    @products = current_merchant.store.products
     @categories = current_merchant.categories.uniq
   end
 
   def show
     @product = Product.find(params[:id])
-    authorize @product
+    authorize @product, :merchant_show?
   end
 
   def new
@@ -60,7 +60,7 @@ class Merchant::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :sku, :sold_by, :discounted_price, :category_id, :available, :pack_weight, :photo)
+    params.require(:product).permit(:name, :description, :price, :sku, :sold_by, :discounted_price, :category_id, :available, :pack_weight, :photo, :package_id)
   end
 
 end

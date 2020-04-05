@@ -1,0 +1,15 @@
+<div class="container py-4">
+  <%= simple_form_for [store, StorePicture.new], remote: :true do |f| %>
+    <%= f.input :picture, as: :file, label: "Aggiungi una foto", input_html: {direct_upload: true}%>
+    <%= f.button :submit, "Conferma", class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div class="container">
+  <div class="row">
+    <% @pictures.each do |photo| %>
+      <div class="col-md-4 mb-3">
+        <%= cl_image_tag photo.picture.key, height: 300, width: 400, crop: :fill,class:"w-100 img-fluid" %>
+      </div>
+    <% end %>
+  </div>
+</div>

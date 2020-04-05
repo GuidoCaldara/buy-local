@@ -1,20 +1,39 @@
-<% if product.photo.attached? %>
-  <%= cl_image_tag product.photo.key, width:300, height:300, crop: :fill %>
-<% else %>
-  <%= image_tag 'no-picture-product.png' %>
-<% end %>
 
-<h1>Nome: <%= product.name %></h1>
-<p>Descrizione: <%= product.description %></p>
-<p>Prezzo: <%= product.price %>€</p>
-<% if product.discounted_price_cents != 0 %>
-  <p>Prodotto attualmente scontato a: <%= product.discounted_price %>€</p>
-<% end %>
-<p>
-  Venduto a: <%= product.sold_by %>
-  <% if product.sold_by == "Confezione" %>
-  <br>Peso confezione: <%=product.pack_weight  %>g
-  <% end %>
-</p>
-<p><%= product.available ? 'Non Disponibile' :'Disponibile' %></p>
+<div class="container pt-3">
+  <h1>Anteprima del prodotto</h1>
+
+  <div class="row">
+    <div data-product-card-lg="" class="card-wrapper product-card-lg">
+      <div class="product-card-lg__img">
+        <img data-image-product="<%= product.id %>" class="active" src="https://loremflickr.com/320/240/dog">
+      </div>
+      <div class="product-card-lg__body">
+        <div class="product-card-lg__body__title">
+          <div class="product-card-lg__body__categories">
+          </div>
+          <h1 class="card-title"><%= product.name %></h1>
+          <p><%= product.category.name %></p>
+        </div>
+        <% if product.on_sale? %>
+          <span class="product-card__footer__price__integer"><%= integer_discounted_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_discounted_price(product) %>€</span>
+          <del><%= product.price %>€</del> /<span> <%= package_type(product) %></span>
+      <% else %>
+        <span class="product-card__footer__price__integer"><%= integer_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_price(product) %>€ /</span>
+        <span class="product-card__footer__sold-by"> <%= package_type(product) %></span>
+        <% end %>
+
+        <div class="product-card-lg__body__description">
+          <p><%= product.description %></p>
+        </div>
+        <div class="product-card-lg__body__delivery">
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
 

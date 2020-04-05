@@ -1,0 +1,79 @@
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-primary align-items-center">
+  <a class="navbar-brand" href="#">
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    <%= current_merchant.store.name.capitalize %>
+  </a>
+  <div class="d-flex">
+    <div id="MyClockDisplay" class="clock mr-4" onload="showTime()"></div>
+    <p class="m-0" ><%= Date.today.strftime("%A, %b %d") %></p>
+  </div>
+  </div>
+</nav>
+
+<div class="merchant-dashboard-container">
+  <div class="merchant-dashboard-sidebar">
+    <%= link_to merchant_products_view_path, class:"merchant-dashboard-sidebar-link", remote: true do  %>
+      <div class="">
+        Prodotti
+      </div>
+    <% end %>
+    <%= link_to merchant_store_path(current_merchant.store), class:"merchant-dashboard-sidebar-link", remote: true do  %>
+      <div class="">
+        Informazioni Negozio
+      </div>
+    <% end %>
+    <%= link_to photos_store_path(current_merchant.store), class:"merchant-dashboard-sidebar-link", remote: true do  %>
+      <div class="">
+        Foto Negozio
+      </div>
+    <% end %>
+    <%= link_to store_orders_path(current_merchant.store), class:"merchant-dashboard-sidebar-link", remote: true do  %>
+      <div class="">
+        Ordini
+      </div>
+    <% end %>
+    <%= link_to destroy_merchant_session_path, class:"merchant-dashboard-sidebar-link", method: :delete do  %>
+      <div class="">
+        Log Out
+      </div>
+    <% end %>
+  </div>
+  <div class="dashboard-container-main-window">
+  <%#= link_to "Connect with Stripe", "https://connect.stripe.com/express/oauth/authorize?redirect_uri=#{stripe_connect_url}&client_id=#{ENV["STRIPE_CLIENT_ID"]}" %>
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function showTime(){
+    var date = new Date();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+
+    if(h == 0){
+      h = 12;
+    }
+
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+
+    var time = h + ":" + m + ":" + s + " " + session;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+
+    setTimeout(showTime, 1000);
+
+}
+
+showTime();
+</script>

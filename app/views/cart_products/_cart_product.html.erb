@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-3 col-6">
     <h3><%= cart_product.product.name %></h3>
-    <p><%= current_price(cart_product.product) %> / <%= package_type(cart_product.product, 0) %> </p>
+    <p><%= humanized_money_with_symbol(current_price(cart_product.product)) %> / <%= package_type(cart_product.product, 0) %> </p>
   </div>
   <div class="col-md-3 col-5 cart-product-card__quantity">
     <h3>Quantità:</h3>
@@ -26,7 +26,7 @@
   </div>
     <div class="col-md-3 col-5 cart-product-card__price">
       <h3>Totale:</h3>
-      <span class="product-total-price" data-id="price-<%=cart_product.id%>"><%= cart_product.price %>€</span>
+      <span class="product-total-price" data-id="price-<%=cart_product.id%>"><%= humanized_money_with_symbol(cart_product.price) %></span>
     </div>
   <div class="col-md-1 col-2 cart-product-card__delete">
     <%= link_to cart_product, method: :delete, data: {confirm: "Sei Sicuro di Voler eliminare #{cart_product.product.name}"}, remote: true do %>

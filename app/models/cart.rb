@@ -5,6 +5,6 @@ class Cart < ApplicationRecord
   has_one :order
 
   def total_price
-    self.cart_products.pluck(:price_cents).reduce(:+)
+    self.cart_products.pluck(:price_cents).reduce(:+).to_f
   end
 end

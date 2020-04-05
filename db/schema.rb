@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_124518) do
+ActiveRecord::Schema.define(version: 2020_04_05_040702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,9 +100,11 @@ ActiveRecord::Schema.define(version: 2020_04_01_124518) do
     t.string "status", default: "pending"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "amount_cents", default: 0, null: false
     t.string "number"
     t.string "checkout_session_id"
+    t.integer "delivery_fee_cents", default: 0, null: false
+    t.integer "cart_amount_cents", default: 0, null: false
+    t.integer "total_amount_cents", default: 0, null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
@@ -131,6 +133,13 @@ ActiveRecord::Schema.define(version: 2020_04_01_124518) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
+  create_table "store_pictures", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_store_pictures_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.string "street"
@@ -146,6 +155,9 @@ ActiveRecord::Schema.define(version: 2020_04_01_124518) do
     t.float "latitude"
     t.float "longitude"
     t.string "street_number"
+    t.integer "delivery_fee_cents", default: 0, null: false
+    t.integer "free_delivery_threshold_cents", default: 0, null: false
+    t.integer "delivery_time"
     t.index ["merchant_id"], name: "index_stores_on_merchant_id"
   end
 
@@ -171,5 +183,6 @@ ActiveRecord::Schema.define(version: 2020_04_01_124518) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "packages"
   add_foreign_key "products", "stores"
+  add_foreign_key "store_pictures", "stores"
   add_foreign_key "stores", "merchants"
 end

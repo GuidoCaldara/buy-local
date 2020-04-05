@@ -1,4 +1,3 @@
-
 function appendProduct(productCard){
   const container = document.querySelector('.product-list-container')
   container.insertAdjacentHTML('afterbegin', productCard)
@@ -9,13 +8,10 @@ function dislpayErrors(form){
   formContainer.innerHTML = form
 }
 
-function closeModal(){
-  document.querySelector('.store-dashboard-modal-background').remove()
-}
-
 <% if @product.errors.any? %>
   dislpayErrors("<%= j render 'merchant/products/form', product: @product %>")
+  initFormPackageTyp()
 <% else %>
-  closeModal()
+  removeModal()
   appendProduct("<%= j render 'merchant/products/product', product: @product %>")
 <% end%>

@@ -1,0 +1,26 @@
+<div class="card mb-2" data-order-id="<%= order.id %>">
+  <div class="card-header d-flex row m-0">
+    <div class="col-md-3">
+      <strong>Ordine Numero</strong>: <%= order.number %>
+    </div>
+    <div class="col-md-3">
+      <strong class="">Data</strong>: <%= order.created_at.strftime("%d/%m/%Y") %>
+    </div>
+    <div class="col-md-3">
+      <strong class="">Stato</strong>: <%= current_status(order) %>
+    </div>
+    <div class="col-md-3">
+      <strong class="">TOTALE</strong>: <%= order.cart_amount %>€
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="mb-1"><strong>Cliente:</strong> <%= order.delivery_info.first_name %><%= order.delivery_info.last_name %><strong class="ml-3">Tel</strong>: <%= order.delivery_info.phone_number %></p>
+    <p class="card-text"><strong>Indirizzo di Consegna:</strong>
+      <%= full_address(order.delivery_info)  %>
+    </p>
+    <%= link_to 'Vedi i dettagli', merchant_details_order_path(order), class:"btn btn-light btn-sm", remote: true %>
+    <% if order.status == 'paid' %>
+      <%= link_to 'Pronto per la spedizione?', delivery_order_path(order), class:"btn btn-warning btn-sm", remote: true, method: :patch, data: {confirm: "Sei sicuro di voler confermare la consegna dell'ordine? Il cliente riceverà una mail d'avviso" }%>
+    <% end %>
+  </div>
+</div>

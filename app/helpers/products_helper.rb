@@ -1,16 +1,30 @@
 module ProductsHelper
+
   def integer_price(product)
-    product.price.to_s.split(".")[0]
+    if product.discounted_price > 0
+     return product.discounted_price.to_s.split(".")[0]
+    else
+     return product.price.to_s.split(".")[0]
+    end
   end
+
   def decimal_price(product)
-    product.price.to_s.split(".")[1]
+    if product.discounted_price > 0
+     return product.discounted_price.to_s.split(".")[1]
+    else
+     return product.price.to_s.split(".")[1]
+    end
   end
-  def integer_discounted_price(product)
-    product.discounted_price.to_s.split(".")[0]
+
+  def current_price(product)
+    if product.discounted_price != 0
+      return product.discounted_price
+    else
+       return product.price
+    end
   end
-  def decimal_discounted_price(product)
-    product.discounted_price.to_s.split(".")[1]
-  end
+
+
   def package_type(product, amount = 1)
     word = ''
     case product.package.name

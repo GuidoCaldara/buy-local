@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-3 col-6">
     <h3><%= cart_product.product.name %></h3>
-    <p><%= current_price(cart_product.product) %>€ / <%= cart_product.product.sold_by %> </p>
+    <p><%= current_price(cart_product.product) %>€ / <%= package_type(cart_product.product) %> </p>
   </div>
   <div class="col-md-3 col-5 cart-product-card__quantity">
     <h3>Quantità:</h3>

@@ -35,7 +35,7 @@ class DeliveryInfosController < ApplicationController
         payment_method_types: ['card'],
         line_items: order_summary(@order),
         payment_intent_data: {
-          application_fee_amount: (@order.amount_cents * 0.1).round(0),
+          application_fee_amount: (@order.total_amount_cents * 0.1).round(0),
           transfer_data: {
             destination: @order.merchant.stripe_merchant_id,
           },

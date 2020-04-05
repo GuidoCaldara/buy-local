@@ -1,2 +1,15 @@
+
+function removeActiveClass(btns){
+  btns.forEach(btn => btn.classList.remove('active'))
+}
+
 var container = document.querySelector(".dashboard-container-main-window")
-container.innerHTML = "<%= j render 'merchant/orders/index', store: @store %>"
+container.innerHTML = "<%= j render 'merchant/orders/index', orders: @orders, store: @store %>"
+var btns = document.querySelectorAll(".nav-pills a")
+
+btns.forEach( (btn) => {
+   btn.addEventListener('click', ()=>{
+    removeActiveClass(btns)
+    btn.classList.add("active")
+  })
+})

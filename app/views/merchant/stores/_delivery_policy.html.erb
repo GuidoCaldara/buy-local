@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col p-5">
+      <h3 class="mb-3">
+        Spese di consegna per gli ordini
+        <%= link_to 'Modifica', edit_delivery_policy_store_path(store), remote: true, class: "btn btn-sm btn-primary" %>
+      </h3>
+      <p class="mb-1"><strong>Costo consegna</strong></p>
+      <p><%= store.delivery_fee %>€</p>
+      <p class="mb-1"><strong>Consegna gratuita se l'ordine supera i: </strong></p>
+      <p><%= store.free_delivery_threshold %>€</br></p>
+      <p class="mb-1"><strong>Tempi di consegna: </strong></p>
+      <p><%= delivery_time(store) %></br></p>
+    </div>
+  </div>
+</div>

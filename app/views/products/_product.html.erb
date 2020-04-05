@@ -1,43 +1,48 @@
 <div class="card-wrapper product-card">
-  <% if user_signed_in? %>
-    <%= link_to new_product_cart_product_path(product), remote: true do %>
-    <div class="cart-img">
-      <%= image_tag 'cart-logo-white-small.svg' %>
-    </div>
-  <% end %>
-  <% else %>
-    <%= link_to new_access_modal_users_path, remote: true do %>
-    <div class="cart-img">
-      <%= image_tag 'cart-logo-white-small.svg' %>
-    </div>
-  <% end %>
+  <% if product.on_sale? %>
+    <%= image_tag 'sale-icon.svg', class:"product-card__sale-icon" %>
   <% end %>
   <% if product.photo.attached? %>
-    <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill %>
+    <%= cl_image_tag product.photo.key, width:150, height:200, crop: :fill, class:"product-card__product-image"  %>
   <% else %>
-    <%= image_tag 'no-picture-product.png' %>
+    <%= image_tag 'no-picture-product.png', class:"product-card__product-image" %>
   <% end %>
+
   <%= link_to product do %>
   <div class="product-card__body">
     <div class="product-card__body__info">
       <small><%= product.category.name %></small>
       <h3><%= product.name %></h3>
-      <p><%= product.description %></p>
+      <p class="product-card__body__info__description"><%= product.description %></p>
     </div>
-  <div class="product-card__footer">
-    <div class="product-card__footer__price">
-      <div>
+  </div>
+      <div class="product-card__footer">
+      <div class="product-card__footer__price">
         <% if product.on_sale? %>
-          <span class="product-card__footer__price__integer"><%= integer_discounted_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_discounted_price(product) %>€</span>
-          <del><%= product.price %>€</del> /<span> <%= package_type(product) %></span>
-      <% else %>
-        <span class="product-card__footer__price__integer"><%= integer_price(product) %></span>.<span class="product-card__footer__price__decimal"><%= decimal_price(product) %>€ /</span>
-        <span class="product-card__footer__sold-by"> <%= package_type(product) %></span>
+        <div class="product-card__footer__price__old-price">
+          <del><%= product.price %>€</del> </br>
+        </div>
         <% end %>
-      </div>
+        <div class="product-card__footer__price__amount">
+          <p class="product-card__footer__price__amount__integer"><%= integer_price(product) %></p><p class="product-card__footer__price__amount__decimal"><%= decimal_price(product) %>€ /</p>
+        </div>
+          <p class="product-card__footer__sold-by"> <%= package_type(product) %></p>
 
+      </div>
+        <% if user_signed_in? %>
+    <%= link_to new_product_cart_product_path(product), remote: true do %>
+      <div class="cart-img">
+        <%= image_tag 'cart-logo-white-small.svg' %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to new_access_modal_users_path, remote: true do %>
+      <div class="cart-img">
+        <%= image_tag 'cart-logo-white-small.svg' %>
+      </div>
+    <% end %>
+  <% end %>
     </div>
-  </div>
-  </div>
+
   <% end %>
 </div>

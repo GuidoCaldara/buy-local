@@ -1,11 +1,15 @@
 <% show = show || nil %>
 <div data-store-card="<%= store.id %>" class="card-wrapper store-card <%= 'shop-page' if show %>">
   <div class="store-card__img <%= 'shop-page' if show %>">
+    <% if store.store_pictures.empty? %>
+        <%= image_tag 'no-picture-product.png' %>
+    <% else %>
     <i class="carousel-card-arrow fas fa-chevron-left" data-id="<%= store.id %>"></i>
-    <img class="active" data-image-store="<%= store.id %>" src="https://www.resmina.it/Resmina/Home/slider/Salumi_02.jpg">
-    <img data-image-store="<%= store.id %>" class="active" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQs07YaGZWNtWF495qGa7Lhm03yrGXp_3K3cOUYUu1EmMULfWG&usqp=CAU">
-    <img data-image-store="<%= store.id %>" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQMvABOdpKCjEuf5tSxCGtXt-uiS2CJDxxYHW9W5UwhcHyAdYb&usqp=CAU">
+      <%= store.store_pictures.each_with_index do |photo, i| %>
+        <%= cl_image_tag photo.picture.key, height: 300, width: 400, crop: :fill,class:"w-100 img-fluid #{'active' if i.zero?}", data: {image_store: store.id} %>
+      <% end %>
     <i class="fas fa-chevron-right" data-id="<%= store.id %>"></i>
+    <% end %>
   </div>
   <%= link_to store do %>
   <div class="store-card__body <%= 'shop-page' if show %>">
@@ -22,7 +26,9 @@
       <p><%= store.description.truncate(70) %></p>
     </div>
     <div class="store-card__body__delivery">
-      <p>Consegna Entro domani ore 12.00</p>
+      <% if store.delivery_time %>
+        <p><%= stringify_delivery_duration(store) %></p>
+      <% end %>
     </div>
   </div>
   <% end %>
