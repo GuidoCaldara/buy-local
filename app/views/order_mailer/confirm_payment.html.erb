@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Grazie per aver acquistato da BuyLocal</h1>
+    <h5>Il pagamento del tuo ordine è andato a buon fine!</h5>
+    <p>Ecco i dettagli del tuo ordine:</p>
+    <h1 class="mb-3">Riepilogo dell'ordine</h1>
+      <div class="container py-3">
+        <div class="mb-4">
+          <h5 class="mb-3">Dettagli per la consegna</h5>
+          <strong>Cliente:</strong>
+          <p class="mb-2"><%= @order.delivery_info.first_name %> <%= @order.delivery_info.last_name %></p>
+          <p class="mb-1"><strong>Indirizzo:</strong></p>
+          <p class="mb-1"><%= @order.delivery_info.street %>, <%=  @order.delivery_info.city %></p>
+          <p class="mb-2"><%= @order.delivery_info.zip_code %>, <%=  @order.delivery_info.state %></p>
+          <p  class="mb-1"><strong>Telefono:</strong> +39<%=  @order.delivery_info.phone_number %> / <strong>Email:</strong> <%=  @order.delivery_info.email %></p>
+      </div>
+    </div>
+<div class="container py-3">
+  <div class="mb-4">
+    <h5 class="mb-3">Prodotti</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">CODICE</th>
+            <th scope="col">NOME</th>
+            <th scope="col">QUANTITA' ORDINATA</th>
+            <th scope="col">PREZZO UNITA'</th>
+            <th scope="col">PREZZO TOTALE</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order.cart_products.each_with_index do |cart_product, i| %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td>87378</td>
+            <td><%= cart_product.product.name  %></td>
+            <td><%= cart_product.quantity %> <%= package_type(cart_product.product,cart_product.quantity ) %></td>
+            <td><%= cart_product.product.price %>€</td>
+            <td><%= cart_product.price %>€</td>
+          </tr>
+        <% end %>
+            <tr>
+              <th colspan="2"></th>
+              <td colspan="2"></td>
+              <td>TOTALE ORDINE</td>
+              <td><%= @order.cart_amount %>€</td>
+            </tr>
+            <tr>
+              <th colspan="2"></th>
+              <td colspan="2"></td>
+              <td>SPESE DI SPEDIZIONE</td>
+              <td><%= @order.delivery_fee %>€</td>
+            </tr>
+            <tr>
+              <th colspan="2"></th>
+              <td colspan="2"></td>
+              <td>TOTALE</td>
+              <td><%= @order.total_amount %>€</td>
+            </tr>
+
+        </tbody>
+      </table>
+  </div>
+</div>
+
+  </body>
+</html>

@@ -24,6 +24,7 @@ gem 'geocoder'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'stripe_event'
 gem "pundit"
+gem "letter_opener", :group => :development
 
 group :development do
   gem 'web-console', '>= 3.3.0'

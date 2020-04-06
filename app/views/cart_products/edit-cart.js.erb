@@ -2,6 +2,15 @@ document.querySelector('[data-id="quantity-<%= @cart_product.id%>"]').innerText 
 document.querySelector('[data-id="price-<%= @cart_product.id%>"]').innerText = "<%= humanized_money_with_symbol(@cart_product.price) %>"
 document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= humanized_money_with_symbol(@cart_product.cart.total_price / 100) %>"
 document.querySelector('.total-price-in-basket').innerText = "<%= total_price_in_cart(current_user) %>"
+
+<% if free_delivery?(@cart_product.cart) %>
+  var deliveryPrice = "0.00€"
+<% else %>
+  var deliveryPrice = "<%= humanized_money_with_symbol(@cart_product.cart.store.delivery_fee) %>"
+<% end %>
+
+document.querySelector('[data-cart-delivery-id="<%= @cart_product.cart.id%>"]').innerText = deliveryPrice
+
 document.querySelector('.total_products_in_cart').innerText = "<%= product_in_cart(current_user) %>"
 var unitType = document.querySelector("[data-unit-id='<%=@cart_product.id%>']")
 var unitTypeString = unitType.innerText

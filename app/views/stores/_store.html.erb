@@ -27,6 +27,7 @@
     </div>
     <div class="store-card__body__delivery">
       <% if store.delivery_time %>
+        <%= image_tag 'delivery-truck.svg' %>
         <p><%= stringify_delivery_duration(store) %></p>
       <% end %>
     </div>

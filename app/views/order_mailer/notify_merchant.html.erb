@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Congratulazioni! Hai ricevuto un nuovo ordine</h1>
+    <p>Ecco i dettagli per la consegna:</p>
+    <h1>Riepilogo dell'ordine</h1>
+      <div>
+        <div>
+          <h5>Dettagli per la consegna</h5>
+          <strong>Cliente:</strong>
+          <p><%= @order.delivery_info.first_name %> <%= @order.delivery_info.last_name %></p>
+          <p><strong>Indirizzo:</strong></p>
+          <p><%= @order.delivery_info.street %>, <%=  @order.delivery_info.city %></p>
+          <p><%= @order.delivery_info.zip_code %>, <%=  @order.delivery_info.state %></p>
+          <p ><strong>Telefono:</strong> +39<%=  @order.delivery_info.phone_number %> / <strong>Email:</strong> <%=  @order.delivery_info.email %></p>
+      </div>
+    </div>
+<div>
+  <div>
+    <h5>Prodotti</h5>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>CODICE</th>
+            <th>NOME</th>
+            <th>QUANTITA' ORDINATA</th>
+            <th>PREZZO UNITA'</th>
+            <th>PREZZO TOTALE</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order.cart_products.each_with_index do |cart_product, i| %>
+          <tr>
+            <th><%= i + 1 %></th>
+            <td>87378</td>
+            <td><%= cart_product.product.name  %></td>
+            <td><%= cart_product.quantity %> <%= package_type(cart_product.product,cart_product.quantity ) %></td>
+            <td><%= cart_product.product.price %>€</td>
+            <td><%= cart_product.price %>€</td>
+          </tr>
+        <% end %>
+            <tr>
+              <th></th>
+              <td></td>
+              <td>TOTALE ORDINE</td>
+              <td><%= @order.cart_amount %>€</td>
+            </tr>
+            <tr>
+              <th></th>
+              <td></td>
+              <td>SPESE DI SPEDIZIONE</td>
+              <td><%= @order.delivery_fee %>€</td>
+            </tr>
+            <tr>
+              <th></th>
+              <td></td>
+              <td>TOTALE</td>
+              <td><%= @order.total_amount %>€</td>
+            </tr>
+
+        </tbody>
+      </table>
+  </div>
+</div>
+
+  </body>
+</html>

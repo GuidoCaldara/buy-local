@@ -16,6 +16,17 @@ class Order < ApplicationRecord
   before_create :generate_order_number
   before_save :calculate_amounts
   before_validation :set_total_price
+  after_update :send_confirmation_emails
+
+
+  def send_confirmation_emails
+    byebug
+    if self.previous_changes["status"] && status == 'paid'
+
+       OrderMailer.confirm_payment(self).deliver
+       #MerchantNotifierMailer.new_order_received(self).deliver
+    end
+  end
 
   def set_total_price
     self.cart_amount_cents = self.cart.total_price

@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    @stores = policy_scope(Store)
+    @stores = policy_scope(Store).order(created_at: :asc)
     if params[:query].present?
       @stores = @stores.near(params[:query], 5, {order: ""})
       session[:place_query] = params[:query]

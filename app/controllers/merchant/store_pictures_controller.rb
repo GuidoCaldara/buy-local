@@ -7,7 +7,7 @@ class Merchant::StorePicturesController < ApplicationController
     @store_picture.save
     @pictures = @store.store_pictures
     respond_to do |format|
-      format.js { render action: '../stores/photos.js.erb'}
+      format.js { render action: 'photos.js.erb'}
     end
   end
 

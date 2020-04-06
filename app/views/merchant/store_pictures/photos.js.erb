@@ -1,0 +1,5 @@
+var container = document.querySelector(".dashboard-container-main-window")
+container.innerHTML = "<%= j render 'merchant/stores/photos', store: @store, pictures: @pictures %>"
+
+
+directUpload()
