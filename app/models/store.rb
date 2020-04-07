@@ -11,6 +11,37 @@ class Store < ApplicationRecord
   monetize :free_delivery_threshold_cents
   geocoded_by :full_address
   after_validation :geocode, if: ->(obj){ obj.street_changed? }
+  before_validation :set_country
+  validates :name, presence: true, length: { minimum: 5, maximum: 40 }
+  validates :description, presence: true, length: { minimum: 20, maximum: 600 }
+  validates :street, presence: true, length: { minimum: 5, maximum: 40 }
+  validates :zip_code, presence: true, length: { is: 6 }
+  validates :city, presence: true, length: { minimum: 3, maximum: 40 }
+  validates :state, presence: true, length: { minimum: 3, maximum: 40 }
+  validates :street_number, presence: true, length: { minimum: 1, maximum: 3 }
+  validates :phone_number, presence: true, length: { minimum: 7, maximum: 12 }
+  validates :delivery_fee_cents, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 4000 }
+  validates :free_delivery_threshold_cents, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 40000 }
+  validate :free_delivery_threshold_bigger_than_delivery_fee
+  validates :delivery_time, numericality: { only_integer: true}, inclusion: { :in => [24, 48, 72, 96, 120]}
+  before_save :check_geocode
+
+  def set_country
+    self.country = "Italy"
+  end
+
+  def check_geocode
+    if self.latitude == nil || self.longitude == nil
+      error.add(:address, "Inserisci un indirizzo corretto")
+    end
+  end
+
+  def free_delivery_threshold_bigger_than_delivery_fee
+    return if free_delivery_threshold_cents == 0
+    if free_delivery_threshold_cents < delivery_fee_cents
+      error.add(:free_delivery_threshold_cents, "L'importo minimo per la consegna gratuita non può essere inferiore alle spese di spedizione standard")
+    end
+  end
 
   def categories_name
     self.categories.pluck(:name).uniq

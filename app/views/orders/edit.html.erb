@@ -12,7 +12,7 @@
           <div class="row py-3">
             <div class="col-md-3 offset-md-8 cart-total-price-card">
               <h3 class="cart-total-price-text">Totale Ordine: </h3>
-              <span data-id="cart-<%=@order.cart.id%>" class="cart-total-price"><%= prettify_price(@order.cart.total_price) %>€</span> <br/>
+              <span data-id="cart-<%=@order.cart.id%>" class="cart-total-price"><%= prettify_price(@order.cart.products_total_price) %>€</span> <br/>
               <div>
               </div>
             </div>

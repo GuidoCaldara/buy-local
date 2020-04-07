@@ -13,10 +13,13 @@ class Order < ApplicationRecord
   has_one :store, through: :cart
   has_one :merchant, through: :store
   has_one :delivery_info, dependent: :destroy
-  before_create :generate_order_number
+  before_validation :generate_order_number, on: :create
   before_save :calculate_amounts
-  before_validation :set_total_price
+  #before_validation :set_total_price
   after_update :send_confirmation_emails
+  validates :status, presence: true, inclusion: { in: STATUSES.keys }
+  validates :number, presence: true
+  validate :cart_id, uniqueness: true
 
 
   def send_confirmation_emails
@@ -28,12 +31,12 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_total_price
-    self.cart_amount_cents = self.cart.total_price
-  end
+#  def set_total_price
+ #   self.cart_amount_cents = self.cart.products_total_price
+  #end
 
   def calculate_amounts
-    cart_price = self.cart.total_price
+    cart_price = self.cart.products_total_price
     store = self.store
     free_delivery_threshold_cents = store.free_delivery_threshold_cents
     self.cart_amount_cents = cart_price

@@ -10,9 +10,11 @@ class CartProductsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     authorize CartProduct
+
     @cart = Cart.find_or_create_by(user: current_user, completed: false, store: @product.store)
     @cart_product = CartProduct.find_or_initialize_by(product: @product, cart: @cart)
     @cart_product.quantity += (params[:cart_product][:quantity]).to_i
+    byebug
     @cart_product.save
   end
 

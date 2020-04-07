@@ -3,17 +3,17 @@ module CartsHelper
   def free_delivery?(cart)
     return true if cart.store.delivery_fee_cents == 0
     return false if cart.store.free_delivery_threshold_cents == 0
-    cart.total_price >= cart.store.free_delivery_threshold_cents
+    cart.products_total_price >= cart.store.free_delivery_threshold_cents
   end
 
   def partial_total_amount(cart)
-    total = cart.total_price
+    total = cart.products_total_price
     p cart.store.delivery_fee_cents
     if cart.store.free_delivery_threshold_cents == 0
       p 'a'
       total += cart.store.delivery_fee_cents
     end
-    if cart.total_price < cart.store.free_delivery_threshold_cents
+    if cart.products_total_price < cart.store.free_delivery_threshold_cents
       p 'b'
       p total
       total += cart.store.delivery_fee_cents
@@ -23,11 +23,11 @@ module CartsHelper
   end
 
   def reach_free_delivery?(cart)
-    cart.total_price > cart.store.free_delivery_threshold_cents
+    cart.products_total_price > cart.store.free_delivery_threshold_cents
   end
 
   def amount_to_free_delivery(cart)
-    (cart.store.free_delivery_threshold_cents - cart.total_price) / 100
+    (cart.store.free_delivery_threshold_cents - cart.products_total_price) / 100
   end
 
   def stringify_delivery_day(cart)

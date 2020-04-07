@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-4  cart-total-price-card">
               <h3 class="cart-total-price-text">Totale Carrello: </h3>
-              <span data-id="cart-<%=cart.id%>" class="cart-total-price"><%= humanized_money_with_symbol(cart.total_price/ 100.0) %></span> <br/>
+              <span data-id="cart-<%=cart.id%>" class="cart-total-price"><%= humanized_money_with_symbol(cart.products_total_price/ 100.0) %></span> <br/>
               <div>
               </div>
             </div>

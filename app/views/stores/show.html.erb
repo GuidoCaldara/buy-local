@@ -24,10 +24,11 @@
               <span class=""><%= c %></span>
               <% end %>
             </div>
-            <h1><%= @store.name %></h1>
+            <h1 class="card-title"><%= @store.name %></h1>
             <p><%= short_address(@store) %></p>
           </div>
           <div class="store-card__body__description show">
+            <h3 class="card-subtitle">Chi Siamo:</h3>
             <p><%= @store.description %></p>
           </div>
           <div class="store-card__body__delivery">

@@ -3,7 +3,7 @@ document.querySelector('.total-price-in-basket').innerText = "<%= total_price_in
 document.querySelector('.total_products_in_cart').innerText = "<%= product_in_cart(current_user) %>"
 
 <% if @cart_product.cart.cart_products.any? %>
-  document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= prettify_price(@cart_product.cart.total_price) %>€"
+  document.querySelector('[data-id="cart-<%= @cart_product.cart.id%>"]').innerText = "<%= prettify_price(@cart_product.cart.products_total_price) %>€"
 <% end %>
 <% if @cart_product.cart.cart_products.empty? %>
   document.querySelector('[data-cart-id="<%= @cart_product.cart.id%>"]').remove()
