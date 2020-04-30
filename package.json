@@ -10,7 +10,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
     "circular-std": "^1.0.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mapbox-gl": "^1.9.0",
     "places.js": "^1.18.1",
     "popper.js": "^1.16.1",
