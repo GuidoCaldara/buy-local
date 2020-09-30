@@ -1,6 +1,6 @@
 class DeliveryInfosController < ApplicationController
   def new
-    @last_info = current_user.delivery_infos.last ||DeliveryInfo.new()
+    @last_info = current_user.delivery_infos.last || DeliveryInfo.new()
     @order = Order.find(params[:order_id])
     @delivery_info = DeliveryInfo.new(order: @order)
     authorize @delivery_info
@@ -9,6 +9,7 @@ class DeliveryInfosController < ApplicationController
 
   def edit
     @delivery_info = DeliveryInfo.find(params[:id])
+    @last_info = current_user.delivery_infos.last || DeliveryInfo.new()
     authorize @delivery_info
   end
 
@@ -46,6 +47,7 @@ class DeliveryInfosController < ApplicationController
       @order.update(checkout_session_id: session.id)
       redirect_to new_order_payment_path(@order)
     else
+      @last_info = @delivery_info || DeliveryInfo.new()
       render 'new'
     end
   end

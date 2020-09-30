@@ -10,7 +10,7 @@ class User < ApplicationRecord
   after_create :send_welcome_email
 
   def send_welcome_email
-    UserNotifierMailer.send_welcome_email(self).deliver
+    #UserNotifierMailer.send_welcome_email(self).deliver
   end
 
 

@@ -5,12 +5,12 @@ MoneyRails.configure do |config|
   # To set the default currency
   #
   config.default_currency = :eur
-
+  Money.locale_backend = :currency
   # Set default bank object
-  #
+  Money.rounding_mode = BigDecimal::ROUND_HALF_UP
   # Example:
   # config.default_bank = EuCentralBank.new
-
+  #Money.rounding_mode='ROUND_HALF_UP'
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)
   #

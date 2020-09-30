@@ -10,13 +10,13 @@ module StoresHelper
 
   def delivery_time(store)
     case store.delivery_time
-    when 1
+    when 24
       return "1 Giorno Lavorativo"
-    when 2
+    when 48
       return "2 Giorni Lavorativi"
-    when 3
+    when 72
       return "3 Giorni Lavorativi"
-    when 4
+    when 96
       return "4 Giorni Lavorativi"
     end
   end

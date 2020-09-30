@@ -1,5 +1,5 @@
-<tr>
-  <th scope="row">73636278</th>
+<tr data-product-id="<%= product.id%>">
+  <th scope="row"><%= product.sku %></th>
   <td><%= product.category.name %></td>
   <td><%= product.name %></td>
   <td><%= product.price %></td>
@@ -26,51 +26,3 @@
     <% end %>
   </td>
 </tr>
-
-<!-- <div data-product-id="<%#= product.id %>" class="merchant-product-card">
-  <div class="merchant-product-card-image">
-    <%# if product.photo.attached? %>
-    <%#= cl_image_tag product.photo.key, width:20, height:20, crop: :fill %>
-    <%# else %>
-    <%#= image_tag 'no-picture-product.png' %>
-    <%# end %>
-  </div>
-  <div class="merchant-product-card-category">
-    <%#= product.category.name %>
-  </div>
-  <div class="merchant-product-card-name">
-    <%#= product.name.truncate(30) %>
-  </div>
-  <div class="merchant-product-card-price">
-    <%# if product.discounted_price_cents != 0 %>
-      <del><%#= product.price %>€</del>
-    <%# else %>
-      <%#= product.price %>€
-    <%# end %>
-  </div>
-  <div class="merchant-product-card-discount">
-    <%# if product.discounted_price_cents != 0 %>
-      <%#= product.discounted_price %>€
-    <%# else %>
-      ---
-    <%# end %>
-  </div>
-  <div class="merchant-product-card-sold-by">
-    <%#= package_type(product, amount = 1) %>
-  </div>
-  <div class="merchant-product-card-available">
-    <i class="fas fa-circle product-availbility <%#= product.available ? 'green' : 'red' %>"></i>
-  </div>
-  <div class="merchant-product-card-links">
-    <%#= link_to edit_merchant_product_path(product), remote: true do %>
-      <i class="far fa-edit"></i>
-    <%# end %>
-    <%#= link_to merchant_product_path(product), method: :delete, data:{confirm: "Sei sicuro di voler rimuovere #{product.name}?"}, remote: true do %>
-    <i class="fas fa-trash-alt"></i>
-    <%# end %>
-    <%#= link_to merchant_product_path(product), remote: true do %>
-    <i class="fas fa-external-link-alt"></i>
-    <%# end %>
-  </div>
-</div>
- -->

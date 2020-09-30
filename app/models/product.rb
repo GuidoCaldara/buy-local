@@ -14,15 +14,15 @@ class Product < ApplicationRecord
                 }
   validates :name, presence: true, length: { minimum: 5, maximum: 40 }
   validates :description, presence: true, length: { minimum: 10, maximum: 300 }
-  validates :sku, presence: true, length: { minimum: 5, maximum: 10 }
+  validates :sku, presence: true, length: { minimum: 5, maximum: 10 }, uniqueness: { scope: :store_id }
   validates :price_cents, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 40000 }
-  validates :discounted_price_cents, numericality: { only_integer: true, greater_than: 0, less_than: 40000 }, allow_blank: true
+  validates :discounted_price_cents, numericality: { only_integer: true, greater_or_equal_than: 0, less_than: 40000 }, allow_blank: true
   validate :discounted_price_is_bigger_than_normal_price
   validates :pack_weight, numericality: { only_integer: true, greater_than: 0, less_than: 40000 }, allow_blank: true
   validate :pack_weight_present
 
   def pack_weight_present
-    if [1,2,6].includes?(self.package_id) && self.pack_weight.blank?
+    if self.package_id && ["box","jar","piece"].include?(Package.find(self.package_id).name) && self.pack_weight.blank?
       errors.add(:pack_weight, "Aggiungi il peso in grammi")
     end
   end

@@ -6,5 +6,4 @@ class Merchant < ApplicationRecord
   has_one :store
   has_many :products, through: :store
   has_many :categories, through: :products
-
 end

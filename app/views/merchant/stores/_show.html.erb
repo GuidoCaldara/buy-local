@@ -4,7 +4,7 @@
     <div class="col p-5">
       <h3 class="mb-3">
         Informazioni Generali
-        <%= link_to 'Modifica', edit_merchant_store_path(store), remote: true, class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Modifica', edit_merchant_store_path(store), remote: true, class: "btn btn-sm btn-light" %>
       </h3>
       <p class="mb-1"><strong>Nome del negozio</strong></p>
       <p><%= store.name %></p>
@@ -14,6 +14,12 @@
       <p><%= store.phone_number %></p>
       <p class="mb-1"><strong>Descrizione Negozio</strong></p>
       <p><%= store.description %></p>
+      <p class="mb-1"><strong>Logo Negozio</strong></p>
+      <% if @store.logo.attached? %>
+        <%= cl_image_tag @store.logo.key, width: 150 %>
+      <% else %>
+        <p>Non hai inserito il logo</p>
+      <% end %>
     </div>
   </div>
 </div>

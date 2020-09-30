@@ -1,5 +1,6 @@
 class Merchant::ProductsController < ApplicationController
   before_action :authenticate_merchant!
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = policy_scope(Product)
@@ -19,7 +20,6 @@ class Merchant::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     authorize @product, :merchant_show?
   end
 
@@ -41,23 +41,24 @@ class Merchant::ProductsController < ApplicationController
 
 
   def edit
-    @product = Product.find(params[:id])
     authorize @product
   end
 
   def update
-    @product = Product.find(params[:id])
     authorize @product
     @product.update(product_params)
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
   end
 
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :sku, :sold_by, :discounted_price, :category_id, :available, :pack_weight, :photo, :package_id)

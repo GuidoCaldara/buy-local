@@ -2,7 +2,7 @@
   <%= f.input :delivery_fee, label: "Spese di consegna Standard in €" %>
   <%= f.input :free_delivery_threshold, label: "Importo di spesa minimo per consegna a domicilio gratuita (Lasciare 0 se non interessati)" %>
   <%= f.input :delivery_time, collection: Store::DELIVERY_TIME_OPTIONS , label: "Tempi di consegna" %>
-  <%= f.button :submit, "Conferma", class:"btn btn-primary" %>
+  <%= f.button :submit, "Conferma", class:"btn btn-light" %>
 
 <% end %>
 

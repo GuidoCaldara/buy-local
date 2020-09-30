@@ -1,0 +1,11 @@
+<div class="container d-flex align-items-center justify-content-center p-5">
+  <div class="text-center">
+    <h1 class='mb-3'>Connetti Il tuo account Stripe</h1>
+    <p class='mb-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <%= link_to "Connetti", "https://connect.stripe.com/express/oauth/authorize?redirect_uri=#{stripe_connect_url}&client_id=#{ENV["STRIPE_CLIENT_ID"]}", class: 'btn btn-light' %>
+  </div>
+</div>
+

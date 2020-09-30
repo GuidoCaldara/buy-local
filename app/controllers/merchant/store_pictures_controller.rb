@@ -1,4 +1,5 @@
 class Merchant::StorePicturesController < ApplicationController
+  before_action :authenticate_merchant!
   def create
     @store = Store.find(params[:store_id])
     @store_picture = StorePicture.new(store_picture_params)

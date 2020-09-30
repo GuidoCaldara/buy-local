@@ -19,11 +19,10 @@ class Order < ApplicationRecord
   after_update :send_confirmation_emails
   validates :status, presence: true, inclusion: { in: STATUSES.keys }
   validates :number, presence: true
-  validate :cart_id, uniqueness: true
+  validates :cart_id, uniqueness: true
 
 
   def send_confirmation_emails
-    byebug
     if self.previous_changes["status"] && status == 'paid'
 
        OrderMailer.confirm_payment(self).deliver

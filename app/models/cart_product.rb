@@ -19,7 +19,6 @@ class CartProduct < ApplicationRecord
 
   def calculate_price
     p_price_cents = self.product.discounted_price_cents != 0 ?  self.product.discounted_price_cents : self.product.price_cents
-    byebug
     self.price_cents = (self.quantity.to_i * p_price_cents)
   end
 

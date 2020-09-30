@@ -8,5 +8,6 @@
   <%= f.input :street_number, label: "Numero Civico" %>
   <%= f.input :zip_code, label: "CAP" %>
   <%= f.input :state, label: "Provincia" %>
-  <%= f.button :submit, "Aggiorna", class:"btn btn-primary" %>
+  <%= f.input :logo, as: :file, label: "Logo Del Negozio", input_html: {direct_upload: true}%>
+  <%= f.button :submit, "Aggiorna", class:"btn btn-light" %>
 <% end %>

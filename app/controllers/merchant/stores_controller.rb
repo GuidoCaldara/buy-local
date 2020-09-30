@@ -41,7 +41,7 @@ class Merchant::StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :updated_at,:street, :zip_code, :city, :state, :description, :phone_number, :street_number, :delivery_fee, :free_delivery_threshold, :delivery_time  )
+    params.require(:store).permit(:name, :logo, :street, :zip_code, :city, :state, :description, :phone_number, :street_number, :delivery_fee, :free_delivery_threshold, :delivery_time  )
   end
 end
 

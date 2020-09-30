@@ -1,5 +1,6 @@
 class Merchant::OrdersController < ApplicationController
   before_action :authenticate_merchant!
+  before_action :set_order, only: [:delivery, :show]
 
   def index
     @orders = policy_scope(Order).where(status: 'paid')
@@ -7,7 +8,6 @@ class Merchant::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
     authorize @order, :merchant_show?
   end
 
@@ -17,11 +17,16 @@ class Merchant::OrdersController < ApplicationController
   end
 
   def delivery
-    @order = Order.find(params[:id])
     authorize @order, :merchant_show?
     @order.update(status: "delivered")
   end
 
   def destroy
+  end
+
+private
+
+  def set_order
+    @order = Order.find(params[:id])
   end
 end
